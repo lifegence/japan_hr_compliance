@@ -44,4 +44,4 @@
 - JP Payroll（労働時間の集計と月次給与計算）
 - JP Withholding（源泉所得税・住民税の特別徴収・通勤手当の非課税）
 
-[0.1.0]: https://github.com/lifegence/japan-hr-compliance/releases/tag/v0.1.0
+[0.1.0]: https://github.com/lifegence/japan_hr_compliance/releases/tag/v0.1.0

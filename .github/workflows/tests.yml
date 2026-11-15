@@ -53,7 +53,7 @@ jobs:
             bench set-config -g redis_socketio redis://redis-queue:6379
             bench get-app --branch version-16 --skip-assets erpnext
             bench get-app --branch version-16 --skip-assets hrms
-            bench get-app --skip-assets japan_compliance https://github.com/lifegence/japan-compliance
+            bench get-app --skip-assets japan_compliance https://github.com/lifegence/japan_compliance
             bench get-app --skip-assets japan_hr_compliance '$GITHUB_WORKSPACE/japan_hr_compliance'
             bench build
             bench new-site test.localhost --db-root-password root --admin-password admin --mariadb-user-host-login-scope='%'
