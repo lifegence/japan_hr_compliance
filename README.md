@@ -11,7 +11,7 @@ Licensed under GPL-3.0-or-later.
 ---
 
 Frappe HR（hrms）v16 向けの日本の人事労務ローカライズアプリです。会計ローカライズの
-[`japan_compliance`](https://github.com/lifegence/japan-compliance) と対になるアプリで、
+[`japan_compliance`](https://github.com/lifegence/japan_compliance) と対になるアプリで、
 和暦・都道府県・法人番号など日本共通の部品は `japan_compliance` の JP Core を使います。
 
 > **免責**
@@ -84,15 +84,15 @@ Frappe HR（hrms）v16 向けの日本の人事労務ローカライズアプリ
 - Frappe Framework v16
 - ERPNext v16
 - Frappe HR（hrms）v16
-- [`japan_compliance`](https://github.com/lifegence/japan-compliance)（会計ローカライズ。JP Core を使用）
+- [`japan_compliance`](https://github.com/lifegence/japan_compliance)（会計ローカライズ。JP Core を使用）
 
 ## インストール
 
 ```bash
 bench get-app --branch version-16 erpnext
 bench get-app --branch version-16 hrms
-bench get-app https://github.com/lifegence/japan-compliance
-bench get-app https://github.com/lifegence/japan-hr-compliance
+bench get-app https://github.com/lifegence/japan_compliance
+bench get-app https://github.com/lifegence/japan_hr_compliance
 bench --site <site> install-app erpnext hrms japan_compliance japan_hr_compliance
 ```
 

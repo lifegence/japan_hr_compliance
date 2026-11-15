@@ -10,8 +10,8 @@ app_license = "GPL-3.0-or-later"
 
 # Frappe HR（hrms）の Employee / Salary Slip / Leave Allocation 等を拡張するため必須。
 # 和暦・都道府県・法人番号など日本共通の部品は japan_compliance の JP Core を使う。
-# japan_compliance のリポジトリ名は japan-compliance だが、required_apps はアプリ名で
-# 照合されるため japan_compliance と書く（frappe.installer.parse_required_app_name）。
+# required_apps は Frappe 本体がアプリ名で、Press と bench が GitHub のリポジトリ名で照合する。
+# リポジトリ名をアプリ名と同じ japan_compliance にしてあるので、両方とも一致する。
 required_apps = ["frappe/hrms", "lifegence/japan_compliance"]
 
 # --- 依存の向きに関する原則 -------------------------------------------------
