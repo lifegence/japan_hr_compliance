@@ -1,0 +1,165 @@
+{
+ "actions": [],
+ "creation": "2026-11-15 12:00:00.000000",
+ "modified": "2026-11-15 12:00:00.000000",
+ "modified_by": "Administrator",
+ "owner": "Administrator",
+ "doctype": "DocType",
+ "name": "JP Bonus Accumulation",
+ "module": "JP Social Insurance",
+ "engine": "InnoDB",
+ "custom": 0,
+ "istable": 0,
+ "issingle": 0,
+ "is_submittable": 0,
+ "editable_grid": 0,
+ "track_changes": 1,
+ "field_order": [
+  "employee",
+  "employee_name",
+  "company",
+  "column_break_27",
+  "fiscal_year",
+  "prior_employer_amount",
+  "own_amount",
+  "total_amount",
+  "section_break_24",
+  "entries"
+ ],
+ "fields": [
+  {
+   "fieldname": "employee",
+   "fieldtype": "Link",
+   "label": "従業員",
+   "options": "Employee",
+   "reqd": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "employee_name",
+   "fieldtype": "Data",
+   "label": "氏名",
+   "fetch_from": "employee.employee_name",
+   "read_only": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "company",
+   "fieldtype": "Link",
+   "label": "会社",
+   "options": "Company",
+   "fetch_from": "employee.company",
+   "read_only": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "column_break_27",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "fiscal_year",
+   "fieldtype": "Int",
+   "label": "年度",
+   "reqd": 1,
+   "in_list_view": 1,
+   "description": "4月1日〜3月31日。2026年4月〜2027年3月は 2026"
+  },
+  {
+   "fieldname": "prior_employer_amount",
+   "fieldtype": "Currency",
+   "label": "前職（協会けんぽ）の健保標準賞与額の累計",
+   "options": "JPY",
+   "description": "同一年度内に協会けんぽの前職で支給された分（手入力。SIR-31）"
+  },
+  {
+   "fieldname": "own_amount",
+   "fieldtype": "Currency",
+   "label": "自社分の累計",
+   "options": "JPY",
+   "read_only": 1
+  },
+  {
+   "fieldname": "total_amount",
+   "fieldtype": "Currency",
+   "label": "健保の年度累計",
+   "options": "JPY",
+   "read_only": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "section_break_24",
+   "fieldtype": "Section Break",
+   "label": "賞与ごとの標準賞与額"
+  },
+  {
+   "fieldname": "entries",
+   "fieldtype": "Table",
+   "label": "賞与",
+   "options": "JP Bonus Accumulation Entry",
+   "read_only": 1
+  }
+ ],
+ "permissions": [
+  {
+   "role": "System Manager",
+   "permlevel": 0,
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "email": 1,
+   "share": 1
+  },
+  {
+   "role": "HR Manager",
+   "permlevel": 0,
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "email": 1,
+   "share": 1
+  },
+  {
+   "role": "JP HR User",
+   "permlevel": 0,
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "email": 1,
+   "share": 1
+  },
+  {
+   "role": "JP Payroll User",
+   "permlevel": 0,
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "email": 1,
+   "share": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "links": [],
+ "title_field": "employee_name",
+ "show_title_field_in_link": 0,
+ "description": "健保の標準賞与額の年度累計（SIR-31・33）。給与明細の確定・取消で更新する"
+}

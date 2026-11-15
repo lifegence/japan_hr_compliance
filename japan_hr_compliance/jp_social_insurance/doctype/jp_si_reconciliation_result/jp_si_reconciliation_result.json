@@ -1,0 +1,80 @@
+{
+ "actions": [],
+ "creation": "2026-11-15 12:00:00.000000",
+ "modified": "2026-11-15 12:00:00.000000",
+ "modified_by": "Administrator",
+ "owner": "Administrator",
+ "doctype": "DocType",
+ "name": "JP SI Reconciliation Result",
+ "module": "JP Social Insurance",
+ "engine": "InnoDB",
+ "custom": 0,
+ "istable": 1,
+ "issingle": 0,
+ "is_submittable": 0,
+ "editable_grid": 1,
+ "track_changes": 0,
+ "field_order": [
+  "checked_on",
+  "prefecture",
+  "item",
+  "grade_table",
+  "column_break_1",
+  "grades_checked",
+  "mismatches",
+  "detail"
+ ],
+ "fields": [
+  {
+   "fieldname": "checked_on",
+   "fieldtype": "Datetime",
+   "label": "突合日時",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "prefecture",
+   "fieldtype": "Data",
+   "label": "都道府県・対象",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "item",
+   "fieldtype": "Data",
+   "label": "項目",
+   "in_list_view": 1,
+   "description": "例：健保（介護非該当）・健保＋介護・支援金・厚年"
+  },
+  {
+   "fieldname": "grade_table",
+   "fieldtype": "Link",
+   "label": "等級表",
+   "options": "JP Standard Remuneration Table"
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "grades_checked",
+   "fieldtype": "Int",
+   "label": "突合した等級数",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "mismatches",
+   "fieldtype": "Int",
+   "label": "不一致の等級数",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "detail",
+   "fieldtype": "Small Text",
+   "label": "不一致の内容"
+  }
+ ],
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "links": []
+}

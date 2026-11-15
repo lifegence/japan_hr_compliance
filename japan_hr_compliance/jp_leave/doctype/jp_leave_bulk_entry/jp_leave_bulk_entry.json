@@ -1,0 +1,193 @@
+{
+ "actions": [],
+ "creation": "2026-11-15 12:00:00.000000",
+ "modified": "2026-11-15 12:00:00.000000",
+ "modified_by": "Administrator",
+ "owner": "Administrator",
+ "doctype": "DocType",
+ "name": "JP Leave Bulk Entry",
+ "module": "JP Leave",
+ "engine": "InnoDB",
+ "custom": 0,
+ "istable": 0,
+ "issingle": 0,
+ "is_submittable": 1,
+ "editable_grid": 0,
+ "track_changes": 1,
+ "field_order": [
+  "purpose",
+  "company",
+  "cb_1",
+  "grant_date",
+  "days",
+  "grant_kind",
+  "round_no",
+  "from_date",
+  "to_date",
+  "reason",
+  "manual_checked",
+  "sec_emp",
+  "employees",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "purpose",
+   "fieldtype": "Select",
+   "label": "用途",
+   "options": "付与\n計画的付与",
+   "reqd": 1,
+   "default": "付与",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "company",
+   "fieldtype": "Link",
+   "label": "会社",
+   "options": "Company",
+   "reqd": 1
+  },
+  {
+   "fieldname": "cb_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "grant_date",
+   "fieldtype": "Date",
+   "label": "付与日",
+   "depends_on": "eval:doc.purpose=='付与'",
+   "mandatory_depends_on": "eval:doc.purpose=='付与'"
+  },
+  {
+   "fieldname": "days",
+   "fieldtype": "Float",
+   "label": "付与日数",
+   "depends_on": "eval:doc.purpose=='付与'"
+  },
+  {
+   "fieldname": "grant_kind",
+   "fieldtype": "Select",
+   "label": "付与の種別",
+   "options": "法定どおり\n前倒し\n分割\n法定を上回る付与\n調整",
+   "default": "法定どおり",
+   "depends_on": "eval:doc.purpose=='付与'"
+  },
+  {
+   "fieldname": "round_no",
+   "fieldtype": "Int",
+   "label": "付与の回",
+   "depends_on": "eval:doc.purpose=='付与'"
+  },
+  {
+   "fieldname": "from_date",
+   "fieldtype": "Date",
+   "label": "計画的付与の開始日",
+   "depends_on": "eval:doc.purpose=='計画的付与'",
+   "mandatory_depends_on": "eval:doc.purpose=='計画的付与'"
+  },
+  {
+   "fieldname": "to_date",
+   "fieldtype": "Date",
+   "label": "計画的付与の終了日",
+   "depends_on": "eval:doc.purpose=='計画的付与'",
+   "mandatory_depends_on": "eval:doc.purpose=='計画的付与'"
+  },
+  {
+   "fieldname": "reason",
+   "fieldtype": "Small Text",
+   "label": "理由",
+   "reqd": 1
+  },
+  {
+   "fieldname": "manual_checked",
+   "fieldtype": "Check",
+   "label": "前倒し・分割付与のシステムで判定できない事項を確認した",
+   "depends_on": "eval:doc.purpose=='付与'"
+  },
+  {
+   "fieldname": "sec_emp",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "employees",
+   "fieldtype": "Table",
+   "label": "対象者",
+   "options": "JP Leave Bulk Entry Employee",
+   "reqd": 1
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "取消元",
+   "options": "JP Leave Bulk Entry",
+   "read_only": 1,
+   "no_copy": 1,
+   "print_hide": 1
+  }
+ ],
+ "permissions": [
+  {
+   "role": "System Manager",
+   "permlevel": 0,
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "email": 1,
+   "share": 1,
+   "submit": 1,
+   "cancel": 1,
+   "amend": 1
+  },
+  {
+   "role": "HR Manager",
+   "permlevel": 0,
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "email": 1,
+   "share": 1,
+   "submit": 1,
+   "cancel": 1,
+   "amend": 1
+  },
+  {
+   "role": "JP HR User",
+   "permlevel": 0,
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "email": 1,
+   "share": 1,
+   "submit": 1,
+   "cancel": 1,
+   "amend": 1
+  },
+  {
+   "role": "HR User",
+   "permlevel": 0,
+   "read": 1,
+   "report": 1,
+   "print": 1,
+   "export": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "links": [],
+ "autoname": "JPLB-.YYYY.-.#####",
+ "naming_rule": "Expression (old style)",
+ "description": "対象者一括の付与（斉一的付与・前倒し、LVR-21）と計画的付与の登録（LVR-41）"
+}

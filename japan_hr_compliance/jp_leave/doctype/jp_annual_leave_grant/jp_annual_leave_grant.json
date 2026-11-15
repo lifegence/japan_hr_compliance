@@ -1,0 +1,535 @@
+{
+ "actions": [],
+ "creation": "2026-11-15 12:00:00.000000",
+ "modified": "2026-11-15 12:00:00.000000",
+ "modified_by": "Administrator",
+ "owner": "Administrator",
+ "doctype": "DocType",
+ "name": "JP Annual Leave Grant",
+ "module": "JP Leave",
+ "engine": "InnoDB",
+ "custom": 0,
+ "istable": 0,
+ "issingle": 0,
+ "is_submittable": 1,
+ "editable_grid": 0,
+ "track_changes": 1,
+ "field_order": [
+  "employee",
+  "employee_name",
+  "company",
+  "cb_1",
+  "status",
+  "grant_date",
+  "days",
+  "expiry_date",
+  "cb_2",
+  "remaining_days",
+  "used_days",
+  "lapsed_days",
+  "pending_reasons",
+  "sec_kind",
+  "grant_kind",
+  "round_no",
+  "is_manual",
+  "plan_method",
+  "cb_kind",
+  "reason",
+  "sec_service",
+  "hire_date",
+  "service_start_date",
+  "service_months",
+  "category",
+  "category_basis",
+  "cb_service",
+  "contract",
+  "work_rule_class",
+  "weekly_days",
+  "weekly_hours",
+  "annual_days",
+  "annual_days_basis",
+  "cb_service2",
+  "grant_table",
+  "table_days",
+  "attendance_calc",
+  "attendance_rate",
+  "sec_advance",
+  "legal_base_date",
+  "legal_days",
+  "advance_period",
+  "cumulative_days",
+  "ten_day_reach_date",
+  "five_day_target",
+  "cb_advance",
+  "judgement_ok",
+  "judgement",
+  "manual_check_items",
+  "manual_checked",
+  "checked_by",
+  "checked_on",
+  "sec_hrms",
+  "leave_type",
+  "leave_allocation",
+  "ledger_entry",
+  "cb_hrms",
+  "lapse_ledger_entry",
+  "cancel_ledger_entry",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "employee",
+   "fieldtype": "Link",
+   "label": "従業員",
+   "options": "Employee",
+   "reqd": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "employee_name",
+   "fieldtype": "Data",
+   "label": "氏名",
+   "fetch_from": "employee.employee_name",
+   "read_only": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "company",
+   "fieldtype": "Link",
+   "label": "会社",
+   "options": "Company",
+   "fetch_from": "employee.company",
+   "read_only": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "cb_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "状態",
+   "options": "予定\n保留\n付与なし\n確定\n失効\n消滅\n取消",
+   "default": "予定",
+   "read_only": 1,
+   "allow_on_submit": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "grant_date",
+   "fieldtype": "Date",
+   "label": "付与日（基準日）",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "days",
+   "fieldtype": "Float",
+   "label": "付与日数",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "expiry_date",
+   "fieldtype": "Date",
+   "label": "最終使用日（失効日）",
+   "read_only": 1,
+   "description": "付与日から有効期間の応答日の前日（LVR-30）"
+  },
+  {
+   "fieldname": "cb_2",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "remaining_days",
+   "fieldtype": "Float",
+   "label": "残日数",
+   "read_only": 1,
+   "allow_on_submit": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "used_days",
+   "fieldtype": "Float",
+   "label": "取得日数",
+   "read_only": 1,
+   "allow_on_submit": 1
+  },
+  {
+   "fieldname": "lapsed_days",
+   "fieldtype": "Float",
+   "label": "失効・消滅した日数",
+   "read_only": 1,
+   "allow_on_submit": 1
+  },
+  {
+   "fieldname": "pending_reasons",
+   "fieldtype": "Small Text",
+   "label": "確認待ちの理由",
+   "read_only": 1,
+   "depends_on": "eval:doc.pending_reasons"
+  },
+  {
+   "fieldname": "sec_kind",
+   "fieldtype": "Section Break",
+   "label": "付与の種別（LVR-21〜24）"
+  },
+  {
+   "fieldname": "grant_kind",
+   "fieldtype": "Select",
+   "label": "付与の種別",
+   "options": "法定どおり\n前倒し\n分割\n法定を上回る付与\n調整",
+   "default": "法定どおり",
+   "description": "「調整」以外は前倒し・分割の判定から自動で決まる"
+  },
+  {
+   "fieldname": "round_no",
+   "fieldtype": "Int",
+   "label": "付与の回（第何回）",
+   "description": "分割付与は同じ回を指定する。空欄は自動"
+  },
+  {
+   "fieldname": "is_manual",
+   "fieldtype": "Check",
+   "label": "手動入力",
+   "description": "前倒し・分割・斉一的付与・追加付与・調整の入力"
+  },
+  {
+   "fieldname": "plan_method",
+   "fieldtype": "Select",
+   "label": "付与予定の作成方式",
+   "options": "\n個別基準日\n全社基準日",
+   "read_only": 1,
+   "depends_on": "eval:!doc.is_manual"
+  },
+  {
+   "fieldname": "cb_kind",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "reason",
+   "fieldtype": "Small Text",
+   "label": "理由",
+   "mandatory_depends_on": "eval:doc.is_manual",
+   "description": "手動の付与・調整は必須（LVR-24）"
+  },
+  {
+   "fieldname": "sec_service",
+   "fieldtype": "Section Break",
+   "label": "勤続・区分（LVR-04〜08）"
+  },
+  {
+   "fieldname": "hire_date",
+   "fieldtype": "Date",
+   "label": "雇入れ日",
+   "read_only": 1
+  },
+  {
+   "fieldname": "service_start_date",
+   "fieldtype": "Date",
+   "label": "勤続通算起算日",
+   "read_only": 1
+  },
+  {
+   "fieldname": "service_months",
+   "fieldtype": "Int",
+   "label": "勤続月数",
+   "read_only": 1
+  },
+  {
+   "fieldname": "category",
+   "fieldtype": "Select",
+   "label": "区分",
+   "options": "通常\n週4日\n週3日\n週2日\n週1日\n付与対象外",
+   "read_only": 1
+  },
+  {
+   "fieldname": "category_basis",
+   "fieldtype": "Data",
+   "label": "区分の根拠",
+   "read_only": 1
+  },
+  {
+   "fieldname": "cb_service",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "contract",
+   "fieldtype": "Link",
+   "label": "基準日時点の雇用契約",
+   "options": "JP Employment Contract",
+   "read_only": 1
+  },
+  {
+   "fieldname": "work_rule_class",
+   "fieldtype": "Data",
+   "label": "就業規則の区分",
+   "read_only": 1
+  },
+  {
+   "fieldname": "weekly_days",
+   "fieldtype": "Float",
+   "label": "週所定労働日数",
+   "read_only": 1
+  },
+  {
+   "fieldname": "weekly_hours",
+   "fieldtype": "Float",
+   "label": "週所定労働時間",
+   "read_only": 1
+  },
+  {
+   "fieldname": "annual_days",
+   "fieldtype": "Int",
+   "label": "年間所定労働日数",
+   "read_only": 1
+  },
+  {
+   "fieldname": "annual_days_basis",
+   "fieldtype": "Select",
+   "label": "年間所定労働日数の算出根拠",
+   "options": "\nカレンダー\n実績\n目安",
+   "read_only": 1
+  },
+  {
+   "fieldname": "cb_service2",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "grant_table",
+   "fieldtype": "Link",
+   "label": "付与テーブル",
+   "options": "JP Leave Grant Table",
+   "read_only": 1
+  },
+  {
+   "fieldname": "table_days",
+   "fieldtype": "Float",
+   "label": "付与テーブルの日数（初期値）",
+   "read_only": 1
+  },
+  {
+   "fieldname": "attendance_calc",
+   "fieldtype": "Link",
+   "label": "出勤率の算定",
+   "options": "JP Attendance Rate Calc",
+   "read_only": 1
+  },
+  {
+   "fieldname": "attendance_rate",
+   "fieldtype": "Percent",
+   "label": "出勤率",
+   "read_only": 1
+  },
+  {
+   "fieldname": "sec_advance",
+   "fieldtype": "Section Break",
+   "label": "前倒し・分割付与の判定（LVR-22・23）"
+  },
+  {
+   "fieldname": "legal_base_date",
+   "fieldtype": "Date",
+   "label": "法定の基準日（参考）",
+   "read_only": 1
+  },
+  {
+   "fieldname": "legal_days",
+   "fieldtype": "Float",
+   "label": "法定の日数（参考）",
+   "read_only": 1
+  },
+  {
+   "fieldname": "advance_period",
+   "fieldtype": "Data",
+   "label": "繰上げ期間",
+   "read_only": 1
+  },
+  {
+   "fieldname": "cumulative_days",
+   "fieldtype": "Float",
+   "label": "この回の付与日数の累計",
+   "read_only": 1
+  },
+  {
+   "fieldname": "ten_day_reach_date",
+   "fieldtype": "Date",
+   "label": "10日到達日",
+   "read_only": 1,
+   "description": "年5日の履行期間の起点"
+  },
+  {
+   "fieldname": "five_day_target",
+   "fieldtype": "Check",
+   "label": "年5日の取得義務の対象",
+   "read_only": 1
+  },
+  {
+   "fieldname": "cb_advance",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "judgement_ok",
+   "fieldtype": "Check",
+   "label": "判定結果：適合",
+   "read_only": 1
+  },
+  {
+   "fieldname": "judgement",
+   "fieldtype": "Small Text",
+   "label": "判定結果",
+   "read_only": 1
+  },
+  {
+   "fieldname": "manual_check_items",
+   "fieldtype": "Small Text",
+   "label": "システムで判定できない事項（担当者が確認）",
+   "read_only": 1
+  },
+  {
+   "fieldname": "manual_checked",
+   "fieldtype": "Check",
+   "label": "上記の事項を確認した"
+  },
+  {
+   "fieldname": "checked_by",
+   "fieldtype": "Link",
+   "label": "確認者",
+   "options": "User",
+   "read_only": 1
+  },
+  {
+   "fieldname": "checked_on",
+   "fieldtype": "Datetime",
+   "label": "確認日時",
+   "read_only": 1
+  },
+  {
+   "fieldname": "sec_hrms",
+   "fieldtype": "Section Break",
+   "label": "hrms との連携（3.1）",
+   "collapsible": 1
+  },
+  {
+   "fieldname": "leave_type",
+   "fieldtype": "Link",
+   "label": "休暇種別",
+   "options": "Leave Type",
+   "read_only": 1
+  },
+  {
+   "fieldname": "leave_allocation",
+   "fieldtype": "Link",
+   "label": "器（Leave Allocation）",
+   "options": "Leave Allocation",
+   "read_only": 1,
+   "allow_on_submit": 1
+  },
+  {
+   "fieldname": "ledger_entry",
+   "fieldtype": "Link",
+   "label": "台帳行（付与）",
+   "options": "Leave Ledger Entry",
+   "read_only": 1,
+   "allow_on_submit": 1
+  },
+  {
+   "fieldname": "cb_hrms",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "lapse_ledger_entry",
+   "fieldtype": "Link",
+   "label": "台帳行（失効・消滅）",
+   "options": "Leave Ledger Entry",
+   "read_only": 1,
+   "allow_on_submit": 1
+  },
+  {
+   "fieldname": "cancel_ledger_entry",
+   "fieldtype": "Link",
+   "label": "台帳行（取消）",
+   "options": "Leave Ledger Entry",
+   "read_only": 1,
+   "allow_on_submit": 1
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "取消元",
+   "options": "JP Annual Leave Grant",
+   "read_only": 1,
+   "no_copy": 1,
+   "print_hide": 1
+  }
+ ],
+ "permissions": [
+  {
+   "role": "System Manager",
+   "permlevel": 0,
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "email": 1,
+   "share": 1,
+   "submit": 1,
+   "cancel": 1,
+   "amend": 1
+  },
+  {
+   "role": "HR Manager",
+   "permlevel": 0,
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "email": 1,
+   "share": 1,
+   "submit": 1,
+   "cancel": 1,
+   "amend": 1
+  },
+  {
+   "role": "JP HR User",
+   "permlevel": 0,
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "email": 1,
+   "share": 1,
+   "submit": 1,
+   "cancel": 1,
+   "amend": 1
+  },
+  {
+   "role": "HR User",
+   "permlevel": 0,
+   "read": 1,
+   "report": 1,
+   "print": 1,
+   "export": 1
+  }
+ ],
+ "sort_field": "grant_date",
+ "sort_order": "DESC",
+ "states": [],
+ "links": [],
+ "autoname": "JPLG-.YYYY.-.#####",
+ "naming_rule": "Expression (old style)",
+ "title_field": "employee_name",
+ "show_title_field_in_link": 0,
+ "search_fields": "employee_name,grant_date",
+ "description": "年休付与（付与1回ごとの正本）。確定（Submit）で hrms の器に台帳行を追加する"
+}

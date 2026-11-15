@@ -1,0 +1,154 @@
+{
+ "actions": [],
+ "creation": "2026-11-15 12:00:00.000000",
+ "modified": "2026-11-15 12:00:00.000000",
+ "modified_by": "Administrator",
+ "owner": "Administrator",
+ "doctype": "DocType",
+ "name": "JP Employee Insurance Status",
+ "module": "JP Social Insurance",
+ "engine": "InnoDB",
+ "custom": 0,
+ "istable": 0,
+ "issingle": 0,
+ "is_submittable": 0,
+ "editable_grid": 0,
+ "track_changes": 1,
+ "field_order": [
+  "employee",
+  "employee_name",
+  "company",
+  "column_break_21",
+  "insurance_type",
+  "acquired",
+  "lost",
+  "insured_category",
+  "remarks"
+ ],
+ "fields": [
+  {
+   "fieldname": "employee",
+   "fieldtype": "Link",
+   "label": "従業員",
+   "options": "Employee",
+   "reqd": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "employee_name",
+   "fieldtype": "Data",
+   "label": "氏名",
+   "fetch_from": "employee.employee_name",
+   "read_only": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "company",
+   "fieldtype": "Link",
+   "label": "会社",
+   "options": "Company",
+   "fetch_from": "employee.company",
+   "read_only": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "column_break_21",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "insurance_type",
+   "fieldtype": "Select",
+   "label": "保険の種類",
+   "options": "健康保険\n厚生年金\n雇用保険",
+   "reqd": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "acquired",
+   "fieldtype": "Date",
+   "label": "資格取得日",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "lost",
+   "fieldtype": "Date",
+   "label": "資格喪失日",
+   "in_list_view": 1,
+   "description": "退職日の翌日"
+  },
+  {
+   "fieldname": "insured_category",
+   "fieldtype": "Select",
+   "label": "被保険者区分",
+   "options": "一般\n短時間労働者",
+   "default": "一般",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "remarks",
+   "fieldtype": "Small Text",
+   "label": "備考"
+  }
+ ],
+ "permissions": [
+  {
+   "role": "System Manager",
+   "permlevel": 0,
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "email": 1,
+   "share": 1
+  },
+  {
+   "role": "HR Manager",
+   "permlevel": 0,
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "email": 1,
+   "share": 1
+  },
+  {
+   "role": "JP HR User",
+   "permlevel": 0,
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "email": 1,
+   "share": 1
+  },
+  {
+   "role": "JP Payroll User",
+   "permlevel": 0,
+   "read": 1,
+   "report": 1,
+   "print": 1
+  }
+ ],
+ "sort_field": "acquired",
+ "sort_order": "DESC",
+ "states": [],
+ "links": [],
+ "autoname": "JPSIS-.#####",
+ "naming_rule": "Expression (old style)",
+ "title_field": "employee_name",
+ "show_title_field_in_link": 0,
+ "description": "被保険者の資格履歴（健保・厚年・雇保。SIR-11）。最新の期間は Employee の資格取得日・喪失日（B-1）に反映する"
+}

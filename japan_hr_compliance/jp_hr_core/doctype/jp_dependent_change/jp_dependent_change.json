@@ -1,0 +1,149 @@
+{
+ "actions": [],
+ "creation": "2026-11-15 18:00:00.000000",
+ "modified": "2026-11-15 18:00:00.000000",
+ "modified_by": "Administrator",
+ "owner": "Administrator",
+ "doctype": "DocType",
+ "name": "JP Dependent Change",
+ "module": "JP HR Core",
+ "engine": "InnoDB",
+ "custom": 0,
+ "istable": 0,
+ "issingle": 0,
+ "is_submittable": 0,
+ "editable_grid": 0,
+ "track_changes": 1,
+ "field_order": [
+  "employee",
+  "employee_name",
+  "company",
+  "change_date",
+  "column_break_1",
+  "change_type",
+  "dependent_name",
+  "dependent_row",
+  "section_1",
+  "details",
+  "hi_related",
+  "tax_related",
+  "change_request"
+ ],
+ "fields": [
+  {
+   "fieldname": "employee",
+   "fieldtype": "Link",
+   "label": "従業員",
+   "options": "Employee",
+   "reqd": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "employee_name",
+   "fieldtype": "Data",
+   "label": "氏名",
+   "fetch_from": "employee.employee_name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "company",
+   "fieldtype": "Link",
+   "label": "会社",
+   "options": "Company",
+   "fetch_from": "employee.company",
+   "read_only": 1
+  },
+  {
+   "fieldname": "change_date",
+   "fieldtype": "Date",
+   "label": "異動日",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "change_type",
+   "fieldtype": "Select",
+   "label": "異動の種類",
+   "options": "追加\n区分変更\n削除",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "dependent_name",
+   "fieldtype": "Data",
+   "label": "扶養親族",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "dependent_row",
+   "fieldtype": "Data",
+   "label": "扶養親族（行 ID）",
+   "hidden": 1
+  },
+  {
+   "fieldname": "section_1",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "details",
+   "fieldtype": "Small Text",
+   "label": "変更内容"
+  },
+  {
+   "fieldname": "hi_related",
+   "fieldtype": "Check",
+   "label": "健康保険の被扶養者に関わる"
+  },
+  {
+   "fieldname": "tax_related",
+   "fieldtype": "Check",
+   "label": "税の扶養に関わる"
+  },
+  {
+   "fieldname": "change_request",
+   "fieldtype": "Link",
+   "label": "変更申請",
+   "options": "JP Employee Change Request"
+  }
+ ],
+ "permissions": [
+  {
+   "role": "System Manager",
+   "permlevel": 0,
+   "read": 1,
+   "report": 1
+  },
+  {
+   "role": "HR Manager",
+   "permlevel": 0,
+   "read": 1,
+   "report": 1
+  },
+  {
+   "role": "JP HR User",
+   "permlevel": 0,
+   "read": 1,
+   "report": 1
+  },
+  {
+   "role": "JP Payroll User",
+   "permlevel": 0,
+   "read": 1,
+   "report": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "links": [],
+ "autoname": "JPDC-.YYYY.-.#####",
+ "naming_rule": "Expression (old style)",
+ "title_field": "employee_name",
+ "in_create": 1,
+ "description": "扶養の異動の記録（EMP-43）。Employee の扶養親族の表の変更から自動で作成し、手続きタスクと源泉の再計算を起動する"
+}

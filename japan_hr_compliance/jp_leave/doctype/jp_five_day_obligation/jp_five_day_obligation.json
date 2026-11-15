@@ -1,0 +1,219 @@
+{
+ "actions": [],
+ "creation": "2026-11-15 12:00:00.000000",
+ "modified": "2026-11-15 12:00:00.000000",
+ "modified_by": "Administrator",
+ "owner": "Administrator",
+ "doctype": "DocType",
+ "name": "JP Five Day Obligation",
+ "module": "JP Leave",
+ "engine": "InnoDB",
+ "custom": 0,
+ "istable": 0,
+ "issingle": 0,
+ "is_submittable": 0,
+ "editable_grid": 0,
+ "track_changes": 1,
+ "field_order": [
+  "employee",
+  "employee_name",
+  "company",
+  "cb_1",
+  "status",
+  "method",
+  "is_prorated",
+  "sec_period",
+  "period_start",
+  "period_end",
+  "count_from",
+  "months",
+  "cb_2",
+  "required_days",
+  "taken_days",
+  "planned_days",
+  "shortfall",
+  "sec_grants",
+  "grants",
+  "notices"
+ ],
+ "fields": [
+  {
+   "fieldname": "employee",
+   "fieldtype": "Link",
+   "label": "従業員",
+   "options": "Employee",
+   "reqd": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "employee_name",
+   "fieldtype": "Data",
+   "label": "氏名",
+   "fetch_from": "employee.employee_name",
+   "read_only": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "company",
+   "fieldtype": "Link",
+   "label": "会社",
+   "options": "Company",
+   "fetch_from": "employee.company",
+   "read_only": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "cb_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "状態",
+   "options": "履行中\n達成\n未達\n無効",
+   "default": "履行中",
+   "in_list_view": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "method",
+   "fieldtype": "Data",
+   "label": "重複期間の方式",
+   "read_only": 1
+  },
+  {
+   "fieldname": "is_prorated",
+   "fieldtype": "Check",
+   "label": "按分（基準日が2つ）",
+   "read_only": 1
+  },
+  {
+   "fieldname": "sec_period",
+   "fieldtype": "Section Break",
+   "label": "履行期間（LVR-51）"
+  },
+  {
+   "fieldname": "period_start",
+   "fieldtype": "Date",
+   "label": "期間開始",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "period_end",
+   "fieldtype": "Date",
+   "label": "期間終了",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "count_from",
+   "fieldtype": "Date",
+   "label": "取得を数え始める日"
+  },
+  {
+   "fieldname": "months",
+   "fieldtype": "Int",
+   "label": "月数"
+  },
+  {
+   "fieldname": "cb_2",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "required_days",
+   "fieldtype": "Float",
+   "label": "必要日数",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "taken_days",
+   "fieldtype": "Float",
+   "label": "取得日数（今日まで）",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "planned_days",
+   "fieldtype": "Float",
+   "label": "取得予定（承認済みの未来日）"
+  },
+  {
+   "fieldname": "shortfall",
+   "fieldtype": "Float",
+   "label": "未取得日数"
+  },
+  {
+   "fieldname": "sec_grants",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "grants",
+   "fieldtype": "Table",
+   "label": "対象の年休付与（基準日）",
+   "options": "JP Five Day Obligation Grant"
+  },
+  {
+   "fieldname": "notices",
+   "fieldtype": "Table",
+   "label": "通知履歴",
+   "options": "JP Five Day Notice Log"
+  }
+ ],
+ "permissions": [
+  {
+   "role": "System Manager",
+   "permlevel": 0,
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "email": 1,
+   "share": 1
+  },
+  {
+   "role": "HR Manager",
+   "permlevel": 0,
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "email": 1,
+   "share": 1
+  },
+  {
+   "role": "JP HR User",
+   "permlevel": 0,
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "email": 1,
+   "share": 1
+  },
+  {
+   "role": "HR User",
+   "permlevel": 0,
+   "read": 1,
+   "report": 1,
+   "print": 1,
+   "export": 1
+  }
+ ],
+ "sort_field": "period_start",
+ "sort_order": "DESC",
+ "states": [],
+ "links": [],
+ "autoname": "JPFD-.YYYY.-.#####",
+ "naming_rule": "Expression (old style)",
+ "title_field": "employee_name",
+ "show_title_field_in_link": 0,
+ "description": "年5日の取得義務の履行期間（LVR-50〜53）。年休付与の確定で自動作成する"
+}

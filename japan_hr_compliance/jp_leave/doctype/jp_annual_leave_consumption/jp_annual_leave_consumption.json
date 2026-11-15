@@ -1,0 +1,155 @@
+{
+ "actions": [],
+ "creation": "2026-11-15 12:00:00.000000",
+ "modified": "2026-11-15 12:00:00.000000",
+ "modified_by": "Administrator",
+ "owner": "Administrator",
+ "doctype": "DocType",
+ "name": "JP Annual Leave Consumption",
+ "module": "JP Leave",
+ "engine": "InnoDB",
+ "custom": 0,
+ "istable": 0,
+ "issingle": 0,
+ "is_submittable": 0,
+ "editable_grid": 0,
+ "track_changes": 1,
+ "field_order": [
+  "employee",
+  "employee_name",
+  "leave_application",
+  "grant",
+  "cb_1",
+  "leave_date",
+  "days",
+  "half_day_part",
+  "take_kind",
+  "cancelled",
+  "cancelled_on",
+  "not_restored"
+ ],
+ "fields": [
+  {
+   "fieldname": "employee",
+   "fieldtype": "Link",
+   "label": "従業員",
+   "options": "Employee",
+   "reqd": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "employee_name",
+   "fieldtype": "Data",
+   "label": "氏名",
+   "fetch_from": "employee.employee_name",
+   "read_only": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "leave_application",
+   "fieldtype": "Link",
+   "label": "休暇申請",
+   "options": "Leave Application",
+   "in_list_view": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "grant",
+   "fieldtype": "Link",
+   "label": "年休付与",
+   "options": "JP Annual Leave Grant",
+   "in_list_view": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "cb_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "leave_date",
+   "fieldtype": "Date",
+   "label": "取得日",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "days",
+   "fieldtype": "Float",
+   "label": "日数",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "half_day_part",
+   "fieldtype": "Select",
+   "label": "半日（午前／午後）",
+   "options": "\n午前\n午後"
+  },
+  {
+   "fieldname": "take_kind",
+   "fieldtype": "Select",
+   "label": "取得の区分",
+   "options": "本人の請求\n計画的付与\n時季指定"
+  },
+  {
+   "fieldname": "cancelled",
+   "fieldtype": "Check",
+   "label": "取消済"
+  },
+  {
+   "fieldname": "cancelled_on",
+   "fieldtype": "Date",
+   "label": "取消日"
+  },
+  {
+   "fieldname": "not_restored",
+   "fieldtype": "Check",
+   "label": "失効済みのため戻さなかった"
+  }
+ ],
+ "permissions": [
+  {
+   "role": "System Manager",
+   "permlevel": 0,
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "email": 1,
+   "share": 1
+  },
+  {
+   "role": "HR Manager",
+   "permlevel": 0,
+   "read": 1,
+   "report": 1,
+   "print": 1,
+   "export": 1
+  },
+  {
+   "role": "JP HR User",
+   "permlevel": 0,
+   "read": 1,
+   "report": 1,
+   "print": 1,
+   "export": 1
+  },
+  {
+   "role": "HR User",
+   "permlevel": 0,
+   "read": 1,
+   "report": 1,
+   "print": 1,
+   "export": 1
+  }
+ ],
+ "sort_field": "leave_date",
+ "sort_order": "DESC",
+ "states": [],
+ "links": [],
+ "autoname": "JPLC-.YYYY.-.######",
+ "naming_rule": "Expression (old style)",
+ "description": "年休充当（どの付与分から何日使ったか。LVR-31・33・40・41）。システムが作成する"
+}

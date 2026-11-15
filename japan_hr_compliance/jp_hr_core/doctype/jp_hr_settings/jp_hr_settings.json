@@ -1,0 +1,96 @@
+{
+ "actions": [],
+ "creation": "2026-11-15 12:00:00.000000",
+ "modified": "2026-11-15 12:00:00.000000",
+ "modified_by": "Administrator",
+ "owner": "Administrator",
+ "doctype": "DocType",
+ "name": "JP HR Settings",
+ "module": "JP HR Core",
+ "engine": "InnoDB",
+ "custom": 0,
+ "istable": 0,
+ "issingle": 1,
+ "is_submittable": 0,
+ "editable_grid": 0,
+ "track_changes": 1,
+ "field_order": [
+  "roster_include_external_history",
+  "contract_end_notice_days",
+  "residence_expiry_notice_days",
+  "headcount_excluded_classes",
+  "disable_procedure_tasks"
+ ],
+ "fields": [
+  {
+   "fieldname": "roster_include_external_history",
+   "fieldtype": "Check",
+   "label": "労働者名簿に入社前の職歴を出力する",
+   "description": "Employee の「前職」の表（external_work_history）を名簿の履歴欄に加える"
+  },
+  {
+   "fieldname": "contract_end_notice_days",
+   "fieldtype": "Int",
+   "label": "有期契約の終了を通知する日数（日前）",
+   "default": "30"
+  },
+  {
+   "fieldname": "residence_expiry_notice_days",
+   "fieldtype": "Int",
+   "label": "在留期間の満了を通知する日数（日前）",
+   "default": "60"
+  },
+  {
+   "fieldname": "headcount_excluded_classes",
+   "fieldtype": "Small Text",
+   "label": "常時使用労働者数に含めない雇用区分",
+   "default": "日雇い",
+   "description": "1行に1区分。既定は日雇い。則53条2項の数え方の行政解釈を確認したら見直す（EMP-33）"
+  },
+  {
+   "fieldname": "disable_procedure_tasks",
+   "fieldtype": "Check",
+   "label": "入退社・扶養異動の手続きタスクを自動で作成しない",
+   "description": "既存データの一括登録時などに使う（EMP-80）"
+  }
+ ],
+ "permissions": [
+  {
+   "role": "System Manager",
+   "permlevel": 0,
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "email": 1,
+   "share": 1
+  },
+  {
+   "role": "HR Manager",
+   "permlevel": 0,
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "email": 1,
+   "share": 1
+  },
+  {
+   "role": "JP HR User",
+   "permlevel": 0,
+   "read": 1,
+   "report": 1,
+   "print": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "links": []
+}

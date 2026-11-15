@@ -1,0 +1,68 @@
+{
+ "actions": [],
+ "creation": "2026-11-15 12:00:00.000000",
+ "modified": "2026-11-15 12:00:00.000000",
+ "modified_by": "Administrator",
+ "owner": "Administrator",
+ "doctype": "DocType",
+ "name": "JP Leave Bulk Entry Employee",
+ "module": "JP Leave",
+ "engine": "InnoDB",
+ "custom": 0,
+ "istable": 1,
+ "issingle": 0,
+ "is_submittable": 0,
+ "editable_grid": 1,
+ "track_changes": 0,
+ "field_order": [
+  "employee",
+  "employee_name",
+  "days",
+  "reference",
+  "result"
+ ],
+ "fields": [
+  {
+   "fieldname": "employee",
+   "fieldtype": "Link",
+   "label": "従業員",
+   "options": "Employee",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "employee_name",
+   "fieldtype": "Data",
+   "label": "氏名",
+   "fetch_from": "employee.employee_name",
+   "read_only": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "days",
+   "fieldtype": "Float",
+   "label": "付与日数（個別）",
+   "in_list_view": 1,
+   "description": "空欄は一括の日数（なければ付与テーブル）"
+  },
+  {
+   "fieldname": "reference",
+   "fieldtype": "Data",
+   "label": "作成した書類",
+   "read_only": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "result",
+   "fieldtype": "Small Text",
+   "label": "結果",
+   "read_only": 1,
+   "in_list_view": 1
+  }
+ ],
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "links": []
+}

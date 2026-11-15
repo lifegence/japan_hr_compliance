@@ -1,0 +1,247 @@
+{
+ "actions": [],
+ "creation": "2026-11-15 12:00:00.000000",
+ "modified": "2026-11-15 12:00:00.000000",
+ "modified_by": "Administrator",
+ "owner": "Administrator",
+ "doctype": "DocType",
+ "name": "JP Leave Settings",
+ "module": "JP Leave",
+ "engine": "InnoDB",
+ "custom": 0,
+ "istable": 0,
+ "issingle": 0,
+ "is_submittable": 0,
+ "editable_grid": 0,
+ "track_changes": 1,
+ "field_order": [
+  "company",
+  "annual_leave_type",
+  "cb_main",
+  "grant_method",
+  "uniform_base_dates",
+  "sec_grant",
+  "plan_days_before",
+  "confirm_method",
+  "cb_grant",
+  "validity_years",
+  "container_years",
+  "sec_take",
+  "half_day_allowed",
+  "overlap_method",
+  "cb_take",
+  "care_leave_year_start_month",
+  "sec_notice",
+  "notice_1_months",
+  "notice_1_text",
+  "notice_2_months",
+  "notice_2_text",
+  "notice_3_months_before_end",
+  "notice_3_text",
+  "sec_retention",
+  "retention_years"
+ ],
+ "fields": [
+  {
+   "fieldname": "company",
+   "fieldtype": "Link",
+   "label": "会社",
+   "options": "Company",
+   "reqd": 1,
+   "unique": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "annual_leave_type",
+   "fieldtype": "Link",
+   "label": "年休の休暇種別",
+   "options": "Leave Type",
+   "reqd": 1,
+   "default": "年次有給休暇",
+   "description": "hrms の器（Leave Allocation）と Leave Application に使う休暇種別"
+  },
+  {
+   "fieldname": "cb_main",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "grant_method",
+   "fieldtype": "Select",
+   "label": "付与方式",
+   "options": "個別基準日\n斉一的付与",
+   "default": "個別基準日",
+   "reqd": 1,
+   "in_list_view": 1,
+   "description": "LVR-01。既定は個別基準日（雇入れ6か月後）"
+  },
+  {
+   "fieldname": "uniform_base_dates",
+   "fieldtype": "Table",
+   "label": "全社基準日",
+   "options": "JP Leave Uniform Base Date",
+   "depends_on": "eval:doc.grant_method=='斉一的付与'",
+   "mandatory_depends_on": "eval:doc.grant_method=='斉一的付与'"
+  },
+  {
+   "fieldname": "sec_grant",
+   "fieldtype": "Section Break",
+   "label": "付与の実行（LVR-20）"
+  },
+  {
+   "fieldname": "plan_days_before",
+   "fieldtype": "Int",
+   "label": "付与予定を作成する日数（基準日の何日前）",
+   "default": "7"
+  },
+  {
+   "fieldname": "confirm_method",
+   "fieldtype": "Select",
+   "label": "確定の方式",
+   "options": "自動\n全件確認",
+   "default": "自動",
+   "description": "自動：データ不足・勤怠未確定の者だけ確認待ち。全件確認：すべて担当者が確定する"
+  },
+  {
+   "fieldname": "cb_grant",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "validity_years",
+   "fieldtype": "Int",
+   "label": "有効期間（年）",
+   "default": "2",
+   "description": "LVR-30。法定の2年より短くできない"
+  },
+  {
+   "fieldname": "container_years",
+   "fieldtype": "Int",
+   "label": "器（Leave Allocation）の期間（年）",
+   "default": "40",
+   "description": "従業員ごとの長期の割当の期間。退職時は退職日で締める"
+  },
+  {
+   "fieldname": "sec_take",
+   "fieldtype": "Section Break",
+   "label": "取得・年5日（LVR-40・51）"
+  },
+  {
+   "fieldname": "half_day_allowed",
+   "fieldtype": "Check",
+   "label": "半日単位の取得を認める",
+   "default": "1"
+  },
+  {
+   "fieldname": "overlap_method",
+   "fieldtype": "Select",
+   "label": "年5日の履行期間が重なる場合",
+   "options": "按分\n各期間で5日",
+   "default": "按分"
+  },
+  {
+   "fieldname": "cb_take",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "care_leave_year_start_month",
+   "fieldtype": "Int",
+   "label": "子の看護等休暇・介護休暇の年度の開始月",
+   "default": "4",
+   "description": "LVR-72。就業規則に定めがなければ4月"
+  },
+  {
+   "fieldname": "sec_notice",
+   "fieldtype": "Section Break",
+   "label": "年5日の通知（LVR-53）"
+  },
+  {
+   "fieldname": "notice_1_months",
+   "fieldtype": "Int",
+   "label": "早期注意：期間開始から（か月）",
+   "default": "6"
+  },
+  {
+   "fieldname": "notice_1_text",
+   "fieldtype": "Small Text",
+   "label": "早期注意の文面",
+   "default": "年5日の履行期間の50%が経過しました。年次有給休暇の取得状況を確認してください。"
+  },
+  {
+   "fieldname": "notice_2_months",
+   "fieldtype": "Int",
+   "label": "要対応：期間開始から（か月）",
+   "default": "9"
+  },
+  {
+   "fieldname": "notice_2_text",
+   "fieldtype": "Small Text",
+   "label": "要対応の文面",
+   "default": "履行期間の残りが3か月です。未取得の日数がある場合は、時季指定を検討してください。"
+  },
+  {
+   "fieldname": "notice_3_months_before_end",
+   "fieldtype": "Int",
+   "label": "緊急：期間終了の何か月前",
+   "default": "2"
+  },
+  {
+   "fieldname": "notice_3_text",
+   "fieldtype": "Small Text",
+   "label": "緊急の文面",
+   "default": "履行期間の終了まで2か月です。年5日を取得できないおそれがあります。速やかに時季指定を行ってください。"
+  },
+  {
+   "fieldname": "sec_retention",
+   "fieldtype": "Section Break",
+   "label": "管理簿（LVR-61）"
+  },
+  {
+   "fieldname": "retention_years",
+   "fieldtype": "Int",
+   "label": "管理簿の保存年数（期間満了後）",
+   "default": "5",
+   "description": "労基則24条の7。法定は5年（経過措置により当分の間3年）。3年未満にはできない"
+  }
+ ],
+ "permissions": [
+  {
+   "role": "System Manager",
+   "permlevel": 0,
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "email": 1,
+   "share": 1
+  },
+  {
+   "role": "HR Manager",
+   "permlevel": 0,
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "email": 1,
+   "share": 1
+  },
+  {
+   "role": "JP HR User",
+   "permlevel": 0,
+   "read": 1,
+   "report": 1,
+   "print": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "links": [],
+ "autoname": "field:company",
+ "naming_rule": "By fieldname",
+ "description": "年次有給休暇の会社別設定（B-3 6章、LVR-01・20・30・51・53・61）"
+}

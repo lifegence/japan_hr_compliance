@@ -1,0 +1,239 @@
+{
+ "actions": [],
+ "creation": "2026-11-15 18:00:00.000000",
+ "modified": "2026-11-15 18:00:00.000000",
+ "modified_by": "Administrator",
+ "owner": "Administrator",
+ "doctype": "DocType",
+ "name": "JP Procedure Task",
+ "module": "JP HR Core",
+ "engine": "InnoDB",
+ "custom": 0,
+ "istable": 0,
+ "issingle": 0,
+ "is_submittable": 0,
+ "editable_grid": 0,
+ "track_changes": 1,
+ "field_order": [
+  "employee",
+  "employee_name",
+  "company",
+  "event",
+  "procedure_name",
+  "rule",
+  "column_break_1",
+  "status",
+  "due_date",
+  "due_text",
+  "base_date",
+  "provisional",
+  "section_1",
+  "completed_on",
+  "completed_by",
+  "legal_basis",
+  "column_break_2",
+  "reference_doctype",
+  "reference_name",
+  "dedupe_key",
+  "remarks"
+ ],
+ "fields": [
+  {
+   "fieldname": "employee",
+   "fieldtype": "Link",
+   "label": "従業員",
+   "options": "Employee",
+   "reqd": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "employee_name",
+   "fieldtype": "Data",
+   "label": "氏名",
+   "fetch_from": "employee.employee_name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "company",
+   "fieldtype": "Link",
+   "label": "会社",
+   "options": "Company",
+   "fetch_from": "employee.company",
+   "read_only": 1
+  },
+  {
+   "fieldname": "event",
+   "fieldtype": "Select",
+   "label": "契機",
+   "options": "入社\n退職\n扶養異動",
+   "read_only": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "procedure_name",
+   "fieldtype": "Data",
+   "label": "手続き",
+   "read_only": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "rule",
+   "fieldtype": "Link",
+   "label": "期限規則",
+   "options": "JP Procedure Rule",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "状態",
+   "options": "未着手\n完了\n対象外",
+   "default": "未着手",
+   "in_list_view": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "due_date",
+   "fieldtype": "Date",
+   "label": "期限",
+   "read_only": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "due_text",
+   "fieldtype": "Data",
+   "label": "期限の数え方",
+   "read_only": 1
+  },
+  {
+   "fieldname": "base_date",
+   "fieldtype": "Date",
+   "label": "基準日",
+   "read_only": 1
+  },
+  {
+   "fieldname": "provisional",
+   "fieldtype": "Check",
+   "label": "期限は仮の設定（確認待ち）",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_1",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "completed_on",
+   "fieldtype": "Date",
+   "label": "完了日",
+   "depends_on": "eval:doc.status=='完了'"
+  },
+  {
+   "fieldname": "completed_by",
+   "fieldtype": "Link",
+   "label": "完了者",
+   "options": "User",
+   "read_only": 1
+  },
+  {
+   "fieldname": "legal_basis",
+   "fieldtype": "Data",
+   "label": "根拠",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_2",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "reference_doctype",
+   "fieldtype": "Link",
+   "label": "関連する記録の種類",
+   "options": "DocType",
+   "read_only": 1
+  },
+  {
+   "fieldname": "reference_name",
+   "fieldtype": "Dynamic Link",
+   "label": "関連する記録",
+   "options": "reference_doctype",
+   "read_only": 1
+  },
+  {
+   "fieldname": "dedupe_key",
+   "fieldtype": "Data",
+   "label": "重複防止キー",
+   "read_only": 1,
+   "hidden": 1,
+   "unique": 1,
+   "no_copy": 1
+  },
+  {
+   "fieldname": "remarks",
+   "fieldtype": "Small Text",
+   "label": "備考"
+  }
+ ],
+ "permissions": [
+  {
+   "role": "System Manager",
+   "permlevel": 0,
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "email": 1,
+   "share": 1
+  },
+  {
+   "role": "HR Manager",
+   "permlevel": 0,
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "email": 1,
+   "share": 1
+  },
+  {
+   "role": "JP HR User",
+   "permlevel": 0,
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "email": 1,
+   "share": 1
+  },
+  {
+   "role": "JP Payroll User",
+   "permlevel": 0,
+   "read": 1,
+   "write": 1,
+   "report": 1,
+   "print": 1
+  }
+ ],
+ "sort_field": "due_date",
+ "sort_order": "ASC",
+ "states": [],
+ "links": [],
+ "autoname": "JPPT-.YYYY.-.#####",
+ "naming_rule": "Expression (old style)",
+ "title_field": "procedure_name",
+ "description": "入退社・扶養異動の手続きタスク（EMP-80〜82）。期限は JP Procedure Rule から算出する"
+}

@@ -1,0 +1,111 @@
+{
+ "actions": [],
+ "creation": "2026-11-15 12:00:00.000000",
+ "modified": "2026-11-15 12:00:00.000000",
+ "modified_by": "Administrator",
+ "owner": "Administrator",
+ "doctype": "DocType",
+ "name": "JP Employee Bank Account",
+ "module": "JP HR Core",
+ "engine": "InnoDB",
+ "custom": 0,
+ "istable": 1,
+ "issingle": 0,
+ "is_submittable": 0,
+ "editable_grid": 1,
+ "track_changes": 0,
+ "field_order": [
+  "priority",
+  "bank_code",
+  "bank_name",
+  "branch_code",
+  "branch_name",
+  "account_type",
+  "account_no",
+  "holder_kana",
+  "fixed_amount"
+ ],
+ "fields": [
+  {
+   "fieldname": "priority",
+   "fieldtype": "Int",
+   "label": "振込順位",
+   "reqd": 1,
+   "default": "1",
+   "in_list_view": 1,
+   "columns": 1
+  },
+  {
+   "fieldname": "bank_code",
+   "fieldtype": "Data",
+   "label": "金融機関コード",
+   "reqd": 1,
+   "description": "4桁",
+   "in_list_view": 1,
+   "columns": 1
+  },
+  {
+   "fieldname": "bank_name",
+   "fieldtype": "Data",
+   "label": "金融機関名",
+   "in_list_view": 1,
+   "columns": 2
+  },
+  {
+   "fieldname": "branch_code",
+   "fieldtype": "Data",
+   "label": "支店コード",
+   "reqd": 1,
+   "description": "3桁",
+   "in_list_view": 1,
+   "columns": 1
+  },
+  {
+   "fieldname": "branch_name",
+   "fieldtype": "Data",
+   "label": "支店名",
+   "in_list_view": 1,
+   "columns": 1
+  },
+  {
+   "fieldname": "account_type",
+   "fieldtype": "Select",
+   "label": "預金種目",
+   "options": "普通\n当座\n貯蓄",
+   "default": "普通",
+   "reqd": 1,
+   "in_list_view": 1,
+   "columns": 1
+  },
+  {
+   "fieldname": "account_no",
+   "fieldtype": "Data",
+   "label": "口座番号",
+   "reqd": 1,
+   "description": "7桁",
+   "in_list_view": 1,
+   "columns": 1
+  },
+  {
+   "fieldname": "holder_kana",
+   "fieldtype": "Data",
+   "label": "口座名義（カナ）",
+   "reqd": 1,
+   "description": "全銀フォーマットの半角カナに変換して保存"
+  },
+  {
+   "fieldname": "fixed_amount",
+   "fieldtype": "Currency",
+   "label": "振込額（定額）",
+   "options": "JPY",
+   "description": "空欄は残額をこの口座に振り込む",
+   "in_list_view": 1,
+   "columns": 1
+  }
+ ],
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "links": []
+}

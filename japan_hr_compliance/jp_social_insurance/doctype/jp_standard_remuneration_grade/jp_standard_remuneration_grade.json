@@ -1,0 +1,60 @@
+{
+ "actions": [],
+ "creation": "2026-11-15 12:00:00.000000",
+ "modified": "2026-11-15 12:00:00.000000",
+ "modified_by": "Administrator",
+ "owner": "Administrator",
+ "doctype": "DocType",
+ "name": "JP Standard Remuneration Grade",
+ "module": "JP Social Insurance",
+ "engine": "InnoDB",
+ "custom": 0,
+ "istable": 1,
+ "issingle": 0,
+ "is_submittable": 0,
+ "editable_grid": 1,
+ "track_changes": 0,
+ "field_order": [
+  "grade",
+  "standard",
+  "lower",
+  "upper"
+ ],
+ "fields": [
+  {
+   "fieldname": "grade",
+   "fieldtype": "Int",
+   "label": "等級",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "standard",
+   "fieldtype": "Currency",
+   "label": "標準報酬月額",
+   "options": "JPY",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "lower",
+   "fieldtype": "Currency",
+   "label": "報酬月額（以上）",
+   "options": "JPY",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "upper",
+   "fieldtype": "Currency",
+   "label": "報酬月額（未満）",
+   "options": "JPY",
+   "in_list_view": 1,
+   "description": "最上位等級は空欄（上限なし）"
+  }
+ ],
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "links": []
+}

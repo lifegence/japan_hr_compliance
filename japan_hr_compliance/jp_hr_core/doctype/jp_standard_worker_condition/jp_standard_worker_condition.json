@@ -1,0 +1,143 @@
+{
+ "actions": [],
+ "creation": "2026-11-15 12:00:00.000000",
+ "modified": "2026-11-15 12:00:00.000000",
+ "modified_by": "Administrator",
+ "owner": "Administrator",
+ "doctype": "DocType",
+ "name": "JP Standard Worker Condition",
+ "module": "JP HR Core",
+ "engine": "InnoDB",
+ "custom": 0,
+ "istable": 0,
+ "issingle": 0,
+ "is_submittable": 0,
+ "editable_grid": 0,
+ "track_changes": 1,
+ "field_order": [
+  "company",
+  "workplace",
+  "job_category",
+  "valid_from",
+  "column_break_1",
+  "weekly_hours",
+  "monthly_days"
+ ],
+ "fields": [
+  {
+   "fieldname": "company",
+   "fieldtype": "Link",
+   "label": "会社",
+   "options": "Company",
+   "reqd": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "workplace",
+   "fieldtype": "Link",
+   "label": "事業場",
+   "options": "JP Workplace",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "description": "空欄は会社の既定値"
+  },
+  {
+   "fieldname": "job_category",
+   "fieldtype": "Link",
+   "label": "業務区分",
+   "options": "JP Job Category",
+   "in_list_view": 1,
+   "description": "空欄は事業場の既定値"
+  },
+  {
+   "fieldname": "valid_from",
+   "fieldtype": "Date",
+   "label": "適用開始日",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "weekly_hours",
+   "fieldtype": "Float",
+   "label": "通常の労働者の週所定労働時間",
+   "reqd": 1,
+   "in_list_view": 1,
+   "precision": "2"
+  },
+  {
+   "fieldname": "monthly_days",
+   "fieldtype": "Float",
+   "label": "通常の労働者の月所定労働日数",
+   "reqd": 1,
+   "in_list_view": 1,
+   "precision": "2"
+  }
+ ],
+ "permissions": [
+  {
+   "role": "System Manager",
+   "permlevel": 0,
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "email": 1,
+   "share": 1
+  },
+  {
+   "role": "HR Manager",
+   "permlevel": 0,
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "email": 1,
+   "share": 1
+  },
+  {
+   "role": "JP HR User",
+   "permlevel": 0,
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "email": 1,
+   "share": 1
+  },
+  {
+   "role": "JP Payroll User",
+   "permlevel": 0,
+   "read": 1,
+   "report": 1,
+   "print": 1
+  },
+  {
+   "role": "JP My Number Officer",
+   "permlevel": 0,
+   "read": 1,
+   "report": 1,
+   "print": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "links": [],
+ "autoname": "JPSWC-.#####",
+ "naming_rule": "Expression (old style)",
+ "description": "社会保険の4分の3基準で比較する通常の労働者の所定労働条件（EMP-29）。判定は B-5"
+}

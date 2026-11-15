@@ -1,0 +1,278 @@
+{
+ "actions": [],
+ "creation": "2026-11-15 12:00:00.000000",
+ "modified": "2026-11-15 12:00:00.000000",
+ "modified_by": "Administrator",
+ "owner": "Administrator",
+ "doctype": "DocType",
+ "name": "JP Attendance Rate Calc",
+ "module": "JP Leave",
+ "engine": "InnoDB",
+ "custom": 0,
+ "istable": 0,
+ "issingle": 0,
+ "is_submittable": 0,
+ "editable_grid": 0,
+ "track_changes": 1,
+ "field_order": [
+  "employee",
+  "employee_name",
+  "company",
+  "cb_1",
+  "period_start",
+  "period_end",
+  "legal_period_start",
+  "legal_period_end",
+  "result",
+  "frozen",
+  "sec_counts",
+  "scheduled_days",
+  "excluded_days",
+  "total_working_days",
+  "holiday_work_days",
+  "cb_2",
+  "worked_days",
+  "deemed_days",
+  "attended_days",
+  "absent_days",
+  "cb_3",
+  "rate",
+  "shortened_days",
+  "shortened_deemed_days",
+  "unrecorded_days",
+  "sec_detail",
+  "details",
+  "unrecorded_dates",
+  "treatments",
+  "notes"
+ ],
+ "fields": [
+  {
+   "fieldname": "employee",
+   "fieldtype": "Link",
+   "label": "従業員",
+   "options": "Employee",
+   "reqd": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "employee_name",
+   "fieldtype": "Data",
+   "label": "氏名",
+   "fetch_from": "employee.employee_name",
+   "read_only": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "company",
+   "fieldtype": "Link",
+   "label": "会社",
+   "options": "Company",
+   "fetch_from": "employee.company",
+   "read_only": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "cb_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "period_start",
+   "fieldtype": "Date",
+   "label": "算定期間（開始）",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "period_end",
+   "fieldtype": "Date",
+   "label": "算定期間（終了）",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "legal_period_start",
+   "fieldtype": "Date",
+   "label": "法定の算定期間（開始）",
+   "description": "前倒しの場合だけ"
+  },
+  {
+   "fieldname": "legal_period_end",
+   "fieldtype": "Date",
+   "label": "法定の算定期間（終了）"
+  },
+  {
+   "fieldname": "result",
+   "fieldtype": "Select",
+   "label": "判定",
+   "options": "付与\n付与なし\n保留\n判定不能",
+   "in_list_view": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "frozen",
+   "fieldtype": "Check",
+   "label": "確定済みの付与に使用（変更不可）",
+   "read_only": 1
+  },
+  {
+   "fieldname": "sec_counts",
+   "fieldtype": "Section Break",
+   "label": "算定明細（LVR-15）"
+  },
+  {
+   "fieldname": "scheduled_days",
+   "fieldtype": "Int",
+   "label": "会社カレンダー上の所定労働日"
+  },
+  {
+   "fieldname": "excluded_days",
+   "fieldtype": "Int",
+   "label": "全労働日から除いた日"
+  },
+  {
+   "fieldname": "total_working_days",
+   "fieldtype": "Int",
+   "label": "全労働日（分母）"
+  },
+  {
+   "fieldname": "holiday_work_days",
+   "fieldtype": "Int",
+   "label": "所定休日に労働した日（算入しない）"
+  },
+  {
+   "fieldname": "cb_2",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "worked_days",
+   "fieldtype": "Int",
+   "label": "実際に出勤した日"
+  },
+  {
+   "fieldname": "deemed_days",
+   "fieldtype": "Int",
+   "label": "出勤したものとみなす日"
+  },
+  {
+   "fieldname": "attended_days",
+   "fieldtype": "Int",
+   "label": "出勤日（分子）"
+  },
+  {
+   "fieldname": "absent_days",
+   "fieldtype": "Int",
+   "label": "欠勤日"
+  },
+  {
+   "fieldname": "cb_3",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "rate",
+   "fieldtype": "Percent",
+   "label": "出勤率",
+   "precision": "2"
+  },
+  {
+   "fieldname": "shortened_days",
+   "fieldtype": "Int",
+   "label": "前倒しで短縮された期間（暦日）"
+  },
+  {
+   "fieldname": "shortened_deemed_days",
+   "fieldtype": "Int",
+   "label": "うち所定労働日（出勤とみなす）"
+  },
+  {
+   "fieldname": "unrecorded_days",
+   "fieldtype": "Int",
+   "label": "勤怠が未確定の日"
+  },
+  {
+   "fieldname": "sec_detail",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "details",
+   "fieldtype": "Table",
+   "label": "内訳",
+   "options": "JP Attendance Rate Detail"
+  },
+  {
+   "fieldname": "unrecorded_dates",
+   "fieldtype": "Small Text",
+   "label": "勤怠が未確定の日付"
+  },
+  {
+   "fieldname": "treatments",
+   "fieldtype": "Small Text",
+   "label": "使用した休暇種別の設定（写し）"
+  },
+  {
+   "fieldname": "notes",
+   "fieldtype": "Small Text",
+   "label": "注記"
+  }
+ ],
+ "permissions": [
+  {
+   "role": "System Manager",
+   "permlevel": 0,
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "email": 1,
+   "share": 1
+  },
+  {
+   "role": "HR Manager",
+   "permlevel": 0,
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "email": 1,
+   "share": 1
+  },
+  {
+   "role": "JP HR User",
+   "permlevel": 0,
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "email": 1,
+   "share": 1
+  },
+  {
+   "role": "HR User",
+   "permlevel": 0,
+   "read": 1,
+   "report": 1,
+   "print": 1,
+   "export": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "links": [],
+ "autoname": "JPAR-.YYYY.-.#####",
+ "naming_rule": "Expression (old style)",
+ "title_field": "employee_name",
+ "show_title_field_in_link": 0,
+ "search_fields": "employee_name,period_end",
+ "description": "出勤率の算定明細（LVR-10〜16）。付与の確定後は変更しない"
+}

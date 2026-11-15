@@ -1,0 +1,122 @@
+{
+ "actions": [],
+ "creation": "2026-11-15 12:00:00.000000",
+ "modified": "2026-11-15 12:00:00.000000",
+ "modified_by": "Administrator",
+ "owner": "Administrator",
+ "doctype": "DocType",
+ "name": "JP Workers Comp Rate",
+ "module": "JP Social Insurance",
+ "engine": "InnoDB",
+ "custom": 0,
+ "istable": 0,
+ "issingle": 0,
+ "is_submittable": 0,
+ "editable_grid": 0,
+ "track_changes": 1,
+ "field_order": [
+  "business_code",
+  "business_name",
+  "business_category",
+  "section_break_12",
+  "rates"
+ ],
+ "fields": [
+  {
+   "fieldname": "business_code",
+   "fieldtype": "Data",
+   "label": "業種番号",
+   "reqd": 1,
+   "unique": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "business_name",
+   "fieldtype": "Data",
+   "label": "事業の種類（業種名）",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "business_category",
+   "fieldtype": "Data",
+   "label": "事業の種類の分類",
+   "description": "例：その他の各種事業"
+  },
+  {
+   "fieldname": "section_break_12",
+   "fieldtype": "Section Break",
+   "label": "料率の版"
+  },
+  {
+   "fieldname": "rates",
+   "fieldtype": "Table",
+   "label": "料率の版",
+   "options": "JP Workers Comp Rate Version"
+  }
+ ],
+ "permissions": [
+  {
+   "role": "System Manager",
+   "permlevel": 0,
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "email": 1,
+   "share": 1
+  },
+  {
+   "role": "HR Manager",
+   "permlevel": 0,
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "email": 1,
+   "share": 1
+  },
+  {
+   "role": "JP HR User",
+   "permlevel": 0,
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "email": 1,
+   "share": 1
+  },
+  {
+   "role": "JP Payroll User",
+   "permlevel": 0,
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "email": 1,
+   "share": 1
+  }
+ ],
+ "sort_field": "business_code",
+ "sort_order": "DESC",
+ "states": [],
+ "links": [],
+ "autoname": "field:business_code",
+ "naming_rule": "By fieldname",
+ "title_field": "business_name",
+ "show_title_field_in_link": 0,
+ "search_fields": "business_name",
+ "description": "労災保険率（業種ごと・適用開始日つきの版。SIR-05・64）。JP Workplace の労災保険の事業の種類から参照する"
+}

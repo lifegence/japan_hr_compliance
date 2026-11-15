@@ -1,0 +1,67 @@
+{
+ "actions": [],
+ "creation": "2026-11-15 12:00:00.000000",
+ "modified": "2026-11-15 12:00:00.000000",
+ "modified_by": "Administrator",
+ "owner": "Administrator",
+ "doctype": "DocType",
+ "name": "JP Leave Grant Table Row",
+ "module": "JP Leave",
+ "engine": "InnoDB",
+ "custom": 0,
+ "istable": 1,
+ "issingle": 0,
+ "is_submittable": 0,
+ "editable_grid": 1,
+ "track_changes": 0,
+ "field_order": [
+  "service_months",
+  "category",
+  "days",
+  "legal_days",
+  "below_legal"
+ ],
+ "fields": [
+  {
+   "fieldname": "service_months",
+   "fieldtype": "Int",
+   "label": "勤続月数（以上）",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "category",
+   "fieldtype": "Select",
+   "label": "区分",
+   "options": "通常\n週4日\n週3日\n週2日\n週1日",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "days",
+   "fieldtype": "Float",
+   "label": "付与日数",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "legal_days",
+   "fieldtype": "Float",
+   "label": "法定日数（参照）",
+   "read_only": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "below_legal",
+   "fieldtype": "Check",
+   "label": "法定を下回る",
+   "read_only": 1,
+   "in_list_view": 1
+  }
+ ],
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "links": []
+}

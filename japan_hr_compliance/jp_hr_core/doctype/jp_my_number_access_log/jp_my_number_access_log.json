@@ -1,0 +1,129 @@
+{
+ "actions": [],
+ "creation": "2026-11-15 18:00:00.000000",
+ "modified": "2026-11-15 18:00:00.000000",
+ "modified_by": "Administrator",
+ "owner": "Administrator",
+ "doctype": "DocType",
+ "name": "JP My Number Access Log",
+ "module": "JP HR Core",
+ "engine": "InnoDB",
+ "custom": 0,
+ "istable": 0,
+ "issingle": 0,
+ "is_submittable": 0,
+ "editable_grid": 0,
+ "track_changes": 0,
+ "field_order": [
+  "log_datetime",
+  "user",
+  "action",
+  "ip_address",
+  "column_break_1",
+  "my_number",
+  "employee",
+  "owner_type",
+  "section_1",
+  "reason_type",
+  "reason"
+ ],
+ "fields": [
+  {
+   "fieldname": "log_datetime",
+   "fieldtype": "Datetime",
+   "label": "日時",
+   "read_only": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "user",
+   "fieldtype": "Link",
+   "label": "ユーザー",
+   "options": "User",
+   "read_only": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "action",
+   "fieldtype": "Select",
+   "label": "操作",
+   "options": "登録\n復号\n変更\n出力\n廃棄",
+   "read_only": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "ip_address",
+   "fieldtype": "Data",
+   "label": "IP アドレス",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "my_number",
+   "fieldtype": "Link",
+   "label": "対象",
+   "options": "JP My Number",
+   "read_only": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "employee",
+   "fieldtype": "Link",
+   "label": "従業員",
+   "options": "Employee",
+   "read_only": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "owner_type",
+   "fieldtype": "Data",
+   "label": "区分",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_1",
+   "fieldtype": "Section Break",
+   "label": "理由"
+  },
+  {
+   "fieldname": "reason_type",
+   "fieldtype": "Data",
+   "label": "理由の区分",
+   "read_only": 1
+  },
+  {
+   "fieldname": "reason",
+   "fieldtype": "Small Text",
+   "label": "理由",
+   "read_only": 1
+  }
+ ],
+ "permissions": [
+  {
+   "role": "JP My Number Officer",
+   "permlevel": 0,
+   "read": 1,
+   "report": 1
+  },
+  {
+   "role": "System Manager",
+   "permlevel": 0,
+   "read": 1,
+   "report": 1
+  }
+ ],
+ "sort_field": "log_datetime",
+ "sort_order": "DESC",
+ "states": [],
+ "links": [],
+ "autoname": "JPMNL-.#######",
+ "naming_rule": "Expression (old style)",
+ "in_create": 1,
+ "description": "マイナンバーのアクセスログ（EMP-64）。追記のみで、すべてのロールで編集・削除できない"
+}

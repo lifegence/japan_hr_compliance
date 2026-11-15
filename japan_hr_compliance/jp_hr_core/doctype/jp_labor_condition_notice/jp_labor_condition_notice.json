@@ -1,0 +1,447 @@
+{
+ "actions": [],
+ "creation": "2026-11-15 18:00:00.000000",
+ "modified": "2026-11-15 18:00:00.000000",
+ "modified_by": "Administrator",
+ "owner": "Administrator",
+ "doctype": "DocType",
+ "name": "JP Labor Condition Notice",
+ "module": "JP HR Core",
+ "engine": "InnoDB",
+ "custom": 0,
+ "istable": 0,
+ "issingle": 0,
+ "is_submittable": 1,
+ "editable_grid": 0,
+ "track_changes": 1,
+ "field_order": [
+  "employee",
+  "employee_name",
+  "company",
+  "contract",
+  "notice_type",
+  "column_break_1",
+  "issue_date",
+  "method",
+  "electronic_request",
+  "consent_record",
+  "amended_from",
+  "section_1",
+  "contract_period_text",
+  "renewal_text",
+  "place_text",
+  "job_text",
+  "column_break_2",
+  "renewal_limit_text",
+  "change_scope_place",
+  "change_scope_job",
+  "hours_text",
+  "section_2",
+  "work_time_text",
+  "overtime_text",
+  "break_text",
+  "column_break_3",
+  "holiday_text",
+  "leave_text",
+  "shift_text",
+  "section_3",
+  "wage_text",
+  "wage_payment_text",
+  "raise_text",
+  "column_break_4",
+  "retirement_text",
+  "other_terms_text",
+  "section_4",
+  "conversion_right",
+  "conversion_opportunity_text",
+  "conversion_conditions_text",
+  "section_5",
+  "part_or_fixed",
+  "pt_raise",
+  "pt_retirement_allowance",
+  "pt_bonus",
+  "column_break_5",
+  "consultation_desk",
+  "explanation_right_text",
+  "section_6",
+  "missing_items",
+  "pdf"
+ ],
+ "fields": [
+  {
+   "fieldname": "employee",
+   "fieldtype": "Link",
+   "label": "従業員",
+   "options": "Employee",
+   "reqd": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "employee_name",
+   "fieldtype": "Data",
+   "label": "氏名",
+   "fetch_from": "employee.employee_name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "company",
+   "fieldtype": "Link",
+   "label": "会社",
+   "options": "Company",
+   "fetch_from": "employee.company",
+   "read_only": 1
+  },
+  {
+   "fieldname": "contract",
+   "fieldtype": "Link",
+   "label": "雇用契約",
+   "options": "JP Employment Contract",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "notice_type",
+   "fieldtype": "Select",
+   "label": "交付の場面",
+   "options": "雇入れ時\n契約更新時\n労働条件の変更時\n無期転換時",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "issue_date",
+   "fieldtype": "Date",
+   "label": "交付日",
+   "reqd": 1,
+   "default": "Today",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "method",
+   "fieldtype": "Select",
+   "label": "交付方法",
+   "options": "書面交付\n電子メール等\n従業員ポータル\nFAX",
+   "reqd": 1,
+   "default": "書面交付"
+  },
+  {
+   "fieldname": "electronic_request",
+   "fieldtype": "Check",
+   "label": "本人の電子交付の希望あり",
+   "read_only": 1
+  },
+  {
+   "fieldname": "consent_record",
+   "fieldtype": "Link",
+   "label": "電子交付の希望の記録",
+   "options": "JP Employee Consent",
+   "read_only": 1
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "取消元",
+   "options": "JP Labor Condition Notice",
+   "read_only": 1,
+   "no_copy": 1,
+   "print_hide": 1
+  },
+  {
+   "fieldname": "section_1",
+   "fieldtype": "Section Break",
+   "label": "契約から差し込む事項（労基則5条1項1号〜1号の3）",
+   "collapsible": 1
+  },
+  {
+   "fieldname": "contract_period_text",
+   "fieldtype": "Small Text",
+   "label": "労働契約の期間",
+   "read_only": 1
+  },
+  {
+   "fieldname": "renewal_text",
+   "fieldtype": "Small Text",
+   "label": "契約の更新の有無・判断の基準",
+   "read_only": 1
+  },
+  {
+   "fieldname": "place_text",
+   "fieldtype": "Small Text",
+   "label": "就業の場所（雇入れ直後）",
+   "read_only": 1
+  },
+  {
+   "fieldname": "job_text",
+   "fieldtype": "Small Text",
+   "label": "従事すべき業務（雇入れ直後）",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_2",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "renewal_limit_text",
+   "fieldtype": "Small Text",
+   "label": "更新上限（通算契約期間または更新回数）",
+   "description": "有期契約のみ。契約に上限があれば差し込む。上限がない場合は「なし」と入力"
+  },
+  {
+   "fieldname": "change_scope_place",
+   "fieldtype": "Small Text",
+   "label": "就業の場所の変更の範囲",
+   "read_only": 1
+  },
+  {
+   "fieldname": "change_scope_job",
+   "fieldtype": "Small Text",
+   "label": "業務の変更の範囲",
+   "read_only": 1
+  },
+  {
+   "fieldname": "hours_text",
+   "fieldtype": "Small Text",
+   "label": "所定労働時間・日数",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_2",
+   "fieldtype": "Section Break",
+   "label": "労働時間・休日・休暇（2号）"
+  },
+  {
+   "fieldname": "work_time_text",
+   "fieldtype": "Small Text",
+   "label": "始業・終業の時刻"
+  },
+  {
+   "fieldname": "overtime_text",
+   "fieldtype": "Small Text",
+   "label": "所定時間外労働の有無"
+  },
+  {
+   "fieldname": "break_text",
+   "fieldtype": "Small Text",
+   "label": "休憩時間"
+  },
+  {
+   "fieldname": "column_break_3",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "holiday_text",
+   "fieldtype": "Small Text",
+   "label": "休日"
+  },
+  {
+   "fieldname": "leave_text",
+   "fieldtype": "Small Text",
+   "label": "休暇"
+  },
+  {
+   "fieldname": "shift_text",
+   "fieldtype": "Small Text",
+   "label": "交替制の就業時転換",
+   "description": "交替制でない場合は「なし」"
+  },
+  {
+   "fieldname": "section_3",
+   "fieldtype": "Section Break",
+   "label": "賃金・退職（3号・4号）"
+  },
+  {
+   "fieldname": "wage_text",
+   "fieldtype": "Small Text",
+   "label": "賃金の決定・計算・支払の方法"
+  },
+  {
+   "fieldname": "wage_payment_text",
+   "fieldtype": "Small Text",
+   "label": "賃金の締切り・支払の時期"
+  },
+  {
+   "fieldname": "raise_text",
+   "fieldtype": "Small Text",
+   "label": "昇給に関する事項"
+  },
+  {
+   "fieldname": "column_break_4",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "retirement_text",
+   "fieldtype": "Small Text",
+   "label": "退職に関する事項（解雇の事由を含む）"
+  },
+  {
+   "fieldname": "other_terms_text",
+   "fieldtype": "Small Text",
+   "label": "その他（退職手当・賞与・休職等、定めがある場合）"
+  },
+  {
+   "fieldname": "section_4",
+   "fieldtype": "Section Break",
+   "label": "無期転換（2024年4月追加）"
+  },
+  {
+   "fieldname": "conversion_right",
+   "fieldtype": "Check",
+   "label": "無期転換の申込みができる契約（通算5年を超える契約への更新時等）"
+  },
+  {
+   "fieldname": "conversion_opportunity_text",
+   "fieldtype": "Small Text",
+   "label": "無期転換の申込機会",
+   "depends_on": "conversion_right"
+  },
+  {
+   "fieldname": "conversion_conditions_text",
+   "fieldtype": "Small Text",
+   "label": "無期転換後の労働条件",
+   "depends_on": "conversion_right"
+  },
+  {
+   "fieldname": "section_5",
+   "fieldtype": "Section Break",
+   "label": "パートタイム・有期雇用労働者への明示事項（パート有期法6条）"
+  },
+  {
+   "fieldname": "part_or_fixed",
+   "fieldtype": "Check",
+   "label": "パートタイム・有期雇用労働者",
+   "read_only": 1
+  },
+  {
+   "fieldname": "pt_raise",
+   "fieldtype": "Select",
+   "label": "昇給の有無",
+   "options": "\n有\n無",
+   "depends_on": "part_or_fixed"
+  },
+  {
+   "fieldname": "pt_retirement_allowance",
+   "fieldtype": "Select",
+   "label": "退職手当の有無",
+   "options": "\n有\n無",
+   "depends_on": "part_or_fixed"
+  },
+  {
+   "fieldname": "pt_bonus",
+   "fieldtype": "Select",
+   "label": "賞与の有無",
+   "options": "\n有\n無",
+   "depends_on": "part_or_fixed"
+  },
+  {
+   "fieldname": "column_break_5",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "consultation_desk",
+   "fieldtype": "Small Text",
+   "label": "相談窓口（担当者・部署・連絡先）",
+   "depends_on": "part_or_fixed"
+  },
+  {
+   "fieldname": "explanation_right_text",
+   "fieldtype": "Small Text",
+   "label": "待遇の相違の内容・理由等の説明を求めることができる旨（2026年10月追加）",
+   "depends_on": "part_or_fixed",
+   "description": "空欄なら定型文を差し込む"
+  },
+  {
+   "fieldname": "section_6",
+   "fieldtype": "Section Break",
+   "label": "確認と保存"
+  },
+  {
+   "fieldname": "missing_items",
+   "fieldtype": "Small Text",
+   "label": "未入力の明示事項",
+   "read_only": 1,
+   "no_copy": 1
+  },
+  {
+   "fieldname": "pdf",
+   "fieldtype": "Attach",
+   "label": "交付した通知書（PDF）",
+   "read_only": 1,
+   "no_copy": 1
+  }
+ ],
+ "permissions": [
+  {
+   "role": "System Manager",
+   "permlevel": 0,
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "email": 1,
+   "share": 1,
+   "submit": 1,
+   "cancel": 1,
+   "amend": 1
+  },
+  {
+   "role": "HR Manager",
+   "permlevel": 0,
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "email": 1,
+   "share": 1,
+   "submit": 1,
+   "cancel": 1,
+   "amend": 1
+  },
+  {
+   "role": "JP HR User",
+   "permlevel": 0,
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "email": 1,
+   "share": 1,
+   "submit": 1,
+   "cancel": 1,
+   "amend": 1
+  },
+  {
+   "role": "JP Payroll User",
+   "permlevel": 0,
+   "read": 1,
+   "report": 1,
+   "print": 1
+  },
+  {
+   "role": "Employee",
+   "permlevel": 0,
+   "read": 1,
+   "print": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "links": [],
+ "autoname": "JPLN-.YYYY.-.#####",
+ "naming_rule": "Expression (old style)",
+ "title_field": "employee_name",
+ "description": "労働条件通知書（EMP-50〜52）。雇用契約から作成し、明示事項が揃わないと交付（確定）できない"
+}

@@ -1,0 +1,122 @@
+{
+ "actions": [],
+ "creation": "2026-11-15 12:00:00.000000",
+ "modified": "2026-11-15 12:00:00.000000",
+ "modified_by": "Administrator",
+ "owner": "Administrator",
+ "doctype": "DocType",
+ "name": "JP Employee Dependent",
+ "module": "JP HR Core",
+ "engine": "InnoDB",
+ "custom": 0,
+ "istable": 1,
+ "issingle": 0,
+ "is_submittable": 0,
+ "editable_grid": 1,
+ "track_changes": 0,
+ "field_order": [
+  "dependent_name",
+  "dependent_kana",
+  "relation",
+  "birth_date",
+  "gender",
+  "column_break_1",
+  "cohabiting",
+  "non_resident",
+  "disability_class",
+  "section_1",
+  "hi_dependent_from",
+  "hi_dependent_to",
+  "nenkin_3go"
+ ],
+ "fields": [
+  {
+   "fieldname": "dependent_name",
+   "fieldtype": "Data",
+   "label": "氏名",
+   "reqd": 1,
+   "in_list_view": 1,
+   "columns": 2
+  },
+  {
+   "fieldname": "dependent_kana",
+   "fieldtype": "Data",
+   "label": "氏名カナ",
+   "in_list_view": 1,
+   "columns": 2
+  },
+  {
+   "fieldname": "relation",
+   "fieldtype": "Select",
+   "label": "続柄",
+   "options": "\n配偶者\n子\n父\n母\n祖父\n祖母\n兄弟姉妹\n孫\nその他の親族",
+   "reqd": 1,
+   "in_list_view": 1,
+   "columns": 1
+  },
+  {
+   "fieldname": "birth_date",
+   "fieldtype": "Date",
+   "label": "生年月日",
+   "reqd": 1,
+   "in_list_view": 1,
+   "columns": 1
+  },
+  {
+   "fieldname": "gender",
+   "fieldtype": "Select",
+   "label": "性別",
+   "options": "\n男\n女"
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "cohabiting",
+   "fieldtype": "Check",
+   "label": "同居",
+   "in_list_view": 1,
+   "columns": 1
+  },
+  {
+   "fieldname": "non_resident",
+   "fieldtype": "Check",
+   "label": "国外居住"
+  },
+  {
+   "fieldname": "disability_class",
+   "fieldtype": "Select",
+   "label": "障害の区分",
+   "options": "なし\n一般障害者\n特別障害者\n同居特別障害者",
+   "default": "なし"
+  },
+  {
+   "fieldname": "section_1",
+   "fieldtype": "Section Break",
+   "label": "健康保険・国民年金"
+  },
+  {
+   "fieldname": "hi_dependent_from",
+   "fieldtype": "Date",
+   "label": "健康保険の被扶養者 認定日",
+   "in_list_view": 1,
+   "columns": 1
+  },
+  {
+   "fieldname": "hi_dependent_to",
+   "fieldtype": "Date",
+   "label": "健康保険の被扶養者 解除日"
+  },
+  {
+   "fieldname": "nenkin_3go",
+   "fieldtype": "Check",
+   "label": "国民年金第3号被保険者"
+  }
+ ],
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "links": []
+}

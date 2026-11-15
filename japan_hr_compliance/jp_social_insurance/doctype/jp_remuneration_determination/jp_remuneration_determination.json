@@ -1,0 +1,371 @@
+{
+ "actions": [],
+ "creation": "2026-11-15 12:00:00.000000",
+ "modified": "2026-11-15 12:00:00.000000",
+ "modified_by": "Administrator",
+ "owner": "Administrator",
+ "doctype": "DocType",
+ "name": "JP Remuneration Determination",
+ "module": "JP Social Insurance",
+ "engine": "InnoDB",
+ "custom": 0,
+ "istable": 0,
+ "issingle": 0,
+ "is_submittable": 1,
+ "editable_grid": 0,
+ "track_changes": 1,
+ "field_order": [
+  "employee",
+  "employee_name",
+  "company",
+  "column_break_24",
+  "determination_type",
+  "year",
+  "change_month",
+  "direction",
+  "leave_end",
+  "days_category",
+  "section_break_20",
+  "months",
+  "section_break_21",
+  "average",
+  "adjusted_average",
+  "current_remuneration",
+  "current_health_standard",
+  "current_pension_standard",
+  "column_break_25",
+  "new_health_standard",
+  "new_health_grade",
+  "health_grade_diff",
+  "new_pension_standard",
+  "new_pension_grade",
+  "pension_grade_diff",
+  "column_break_26",
+  "applicable",
+  "effective_from",
+  "result_note",
+  "section_break_22",
+  "regular_determination",
+  "seasonal_reason",
+  "employee_consent",
+  "filing_required",
+  "section_break_23",
+  "history",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "employee",
+   "fieldtype": "Link",
+   "label": "従業員",
+   "options": "Employee",
+   "reqd": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "employee_name",
+   "fieldtype": "Data",
+   "label": "氏名",
+   "fetch_from": "employee.employee_name",
+   "read_only": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "company",
+   "fieldtype": "Link",
+   "label": "会社",
+   "options": "Company",
+   "fetch_from": "employee.company",
+   "read_only": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "column_break_24",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "determination_type",
+   "fieldtype": "Select",
+   "label": "種別",
+   "options": "定時決定\n随時改定\n保険者算定（年間平均）\n産休終了時改定\n育休終了時改定",
+   "reqd": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "year",
+   "fieldtype": "Int",
+   "label": "年",
+   "depends_on": "eval:['定時決定','保険者算定（年間平均）'].includes(doc.determination_type)",
+   "description": "定時決定・年間平均の年"
+  },
+  {
+   "fieldname": "change_month",
+   "fieldtype": "Date",
+   "label": "固定的賃金の変動月",
+   "depends_on": "eval:doc.determination_type=='随時改定'"
+  },
+  {
+   "fieldname": "direction",
+   "fieldtype": "Select",
+   "label": "変動の方向",
+   "options": "\n増額\n減額",
+   "depends_on": "eval:doc.determination_type=='随時改定'"
+  },
+  {
+   "fieldname": "leave_end",
+   "fieldtype": "Date",
+   "label": "休業終了日",
+   "depends_on": "eval:['産休終了時改定','育休終了時改定'].includes(doc.determination_type)"
+  },
+  {
+   "fieldname": "days_category",
+   "fieldtype": "Select",
+   "label": "支払基礎日数の区分",
+   "options": "一般\n一般（4分の3以上のパート等）\n短時間労働者",
+   "default": "一般"
+  },
+  {
+   "fieldname": "section_break_20",
+   "fieldtype": "Section Break",
+   "label": "月ごとの報酬（SIR-40〜43）"
+  },
+  {
+   "fieldname": "months",
+   "fieldtype": "Table",
+   "label": "月ごとの報酬",
+   "options": "JP Remuneration Determination Month"
+  },
+  {
+   "fieldname": "section_break_21",
+   "fieldtype": "Section Break",
+   "label": "結果"
+  },
+  {
+   "fieldname": "average",
+   "fieldtype": "Currency",
+   "label": "平均",
+   "options": "JPY",
+   "read_only": 1
+  },
+  {
+   "fieldname": "adjusted_average",
+   "fieldtype": "Currency",
+   "label": "修正平均（遡及差額を除く）",
+   "options": "JPY",
+   "read_only": 1
+  },
+  {
+   "fieldname": "current_remuneration",
+   "fieldtype": "Currency",
+   "label": "従前の報酬月額",
+   "options": "JPY",
+   "description": "上下限の特例の判定に使う（随時改定）"
+  },
+  {
+   "fieldname": "current_health_standard",
+   "fieldtype": "Currency",
+   "label": "従前の健保 標準報酬月額",
+   "options": "JPY",
+   "read_only": 1
+  },
+  {
+   "fieldname": "current_pension_standard",
+   "fieldtype": "Currency",
+   "label": "従前の厚年 標準報酬月額",
+   "options": "JPY",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_25",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "new_health_standard",
+   "fieldtype": "Currency",
+   "label": "健保 標準報酬月額",
+   "options": "JPY",
+   "read_only": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "new_health_grade",
+   "fieldtype": "Int",
+   "label": "健保 等級",
+   "read_only": 1
+  },
+  {
+   "fieldname": "health_grade_diff",
+   "fieldtype": "Int",
+   "label": "健保 等級差",
+   "read_only": 1
+  },
+  {
+   "fieldname": "new_pension_standard",
+   "fieldtype": "Currency",
+   "label": "厚年 標準報酬月額",
+   "options": "JPY",
+   "read_only": 1
+  },
+  {
+   "fieldname": "new_pension_grade",
+   "fieldtype": "Int",
+   "label": "厚年 等級",
+   "read_only": 1
+  },
+  {
+   "fieldname": "pension_grade_diff",
+   "fieldtype": "Int",
+   "label": "厚年 等級差",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_26",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "applicable",
+   "fieldtype": "Check",
+   "label": "改定・決定に該当",
+   "read_only": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "effective_from",
+   "fieldtype": "Date",
+   "label": "適用開始月",
+   "read_only": 1
+  },
+  {
+   "fieldname": "result_note",
+   "fieldtype": "Small Text",
+   "label": "判定の内容",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_22",
+   "fieldtype": "Section Break",
+   "label": "保険者算定（年間平均）（SIR-48）",
+   "depends_on": "eval:doc.determination_type=='保険者算定（年間平均）'"
+  },
+  {
+   "fieldname": "regular_determination",
+   "fieldtype": "Link",
+   "label": "比較する定時決定",
+   "options": "JP Remuneration Determination"
+  },
+  {
+   "fieldname": "seasonal_reason",
+   "fieldtype": "Check",
+   "label": "業務上の理由による季節的変動がある"
+  },
+  {
+   "fieldname": "employee_consent",
+   "fieldtype": "Check",
+   "label": "本人の同意を得た"
+  },
+  {
+   "fieldname": "filing_required",
+   "fieldtype": "Check",
+   "label": "申立てを行う",
+   "description": "申立ての要否は担当者が確定する"
+  },
+  {
+   "fieldname": "section_break_23",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "history",
+   "fieldtype": "Link",
+   "label": "反映した標準報酬月額の履歴",
+   "options": "JP Standard Remuneration History",
+   "read_only": 1
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "取消元",
+   "options": "JP Remuneration Determination",
+   "read_only": 1,
+   "no_copy": 1,
+   "print_hide": 1
+  }
+ ],
+ "permissions": [
+  {
+   "role": "System Manager",
+   "permlevel": 0,
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "email": 1,
+   "share": 1,
+   "submit": 1,
+   "cancel": 1,
+   "amend": 1
+  },
+  {
+   "role": "HR Manager",
+   "permlevel": 0,
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "email": 1,
+   "share": 1,
+   "submit": 1,
+   "cancel": 1,
+   "amend": 1
+  },
+  {
+   "role": "JP HR User",
+   "permlevel": 0,
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "email": 1,
+   "share": 1,
+   "submit": 1,
+   "cancel": 1,
+   "amend": 1
+  },
+  {
+   "role": "JP Payroll User",
+   "permlevel": 0,
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "email": 1,
+   "share": 1,
+   "submit": 1,
+   "cancel": 1,
+   "amend": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "links": [],
+ "autoname": "JPRD-.#####",
+ "naming_rule": "Expression (old style)",
+ "title_field": "employee_name",
+ "show_title_field_in_link": 0,
+ "description": "定時決定・随時改定・保険者算定（年間平均）・休業終了時改定の処理（SIR-40〜48）。確定（Submit）で標準報酬月額の履歴に反映する"
+}

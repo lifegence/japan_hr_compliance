@@ -1,0 +1,20 @@
+{#- 労働条件通知書（従業員マスタ要件 B-1 v1.0 EMP-50〜52）。明示事項は labor_notice.NOTICE_ITEMS から並べる -#}
+{%- set items = jp_labor_notice_items(doc) -%}
+<style>{{ jp_print_font_css() }}</style>
+<div class="jp-lcn" style="font-family: 'LifegenceJP', 'Noto Sans CJK JP', 'IPAexGothic', sans-serif; font-size: 10.5pt;">
+	<h2 style="text-align: center; margin-bottom: 4px;">労働条件通知書</h2>
+	<p style="text-align: right; margin: 0;">交付日：{{ frappe.utils.formatdate(doc.issue_date, "yyyy年MM月dd日") }}（{{ doc.notice_type }}）</p>
+	<p style="margin: 8px 0;">{{ doc.employee_name }} 殿</p>
+	<p style="text-align: right; margin: 0 0 12px;">{{ doc.company }}</p>
+	<table style="width: 100%; border-collapse: collapse;" border="1" cellpadding="4">
+		<colgroup><col style="width: 28%"><col></colgroup>
+		{%- for row in items %}
+		<tr>
+			<th style="text-align: left; vertical-align: top; font-weight: normal;">{{ row.label }}</th>
+			<td style="white-space: pre-wrap;">{{ row.value or "" }}</td>
+		</tr>
+		{%- endfor %}
+	</table>
+	<p style="margin-top: 12px;">交付方法：{{ doc.method }}{% if doc.electronic_request %}（本人の希望により電磁的方法で交付）{% endif %}</p>
+	<p style="font-size: 8pt; color: #555;">本通知書は労働基準法15条・同法施行規則5条およびパートタイム・有期雇用労働法6条に基づき交付します。</p>
+</div>

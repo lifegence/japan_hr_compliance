@@ -1,0 +1,55 @@
+{
+ "actions": [],
+ "creation": "2026-11-15 12:00:00.000000",
+ "modified": "2026-11-15 12:00:00.000000",
+ "modified_by": "Administrator",
+ "owner": "Administrator",
+ "doctype": "DocType",
+ "name": "JP Five Day Notice Log",
+ "module": "JP Leave",
+ "engine": "InnoDB",
+ "custom": 0,
+ "istable": 1,
+ "issingle": 0,
+ "is_submittable": 0,
+ "editable_grid": 1,
+ "track_changes": 0,
+ "field_order": [
+  "stage",
+  "notice_date",
+  "shortfall",
+  "recipients"
+ ],
+ "fields": [
+  {
+   "fieldname": "stage",
+   "fieldtype": "Select",
+   "label": "段階",
+   "options": "早期注意\n要対応\n緊急",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "notice_date",
+   "fieldtype": "Date",
+   "label": "通知日",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "shortfall",
+   "fieldtype": "Float",
+   "label": "未取得日数",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "recipients",
+   "fieldtype": "Small Text",
+   "label": "通知先",
+   "in_list_view": 1
+  }
+ ],
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "links": []
+}

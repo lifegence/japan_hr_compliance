@@ -1,0 +1,134 @@
+{
+ "actions": [],
+ "creation": "2026-11-15 12:00:00.000000",
+ "modified": "2026-11-15 12:00:00.000000",
+ "modified_by": "Administrator",
+ "owner": "Administrator",
+ "doctype": "DocType",
+ "name": "JP SI Premium Line",
+ "module": "JP Social Insurance",
+ "engine": "InnoDB",
+ "custom": 0,
+ "istable": 1,
+ "issingle": 0,
+ "is_submittable": 0,
+ "editable_grid": 1,
+ "track_changes": 0,
+ "field_order": [
+  "category",
+  "target_month",
+  "premium_kind",
+  "base_amount",
+  "rate",
+  "exempt",
+  "column_break_5",
+  "total_amount",
+  "employee_amount",
+  "employer_amount",
+  "rate_doctype",
+  "rate_version",
+  "rate_row",
+  "grade_table",
+  "note"
+ ],
+ "fields": [
+  {
+   "fieldname": "category",
+   "fieldtype": "Select",
+   "label": "区分",
+   "options": "月額\n賞与\n雇用保険\n労災保険",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "target_month",
+   "fieldtype": "Date",
+   "label": "対象月",
+   "in_list_view": 1,
+   "description": "月額は保険料の対象月、賞与・雇用保険は支給日"
+  },
+  {
+   "fieldname": "premium_kind",
+   "fieldtype": "Select",
+   "label": "保険料",
+   "options": "健康保険（介護含む）\n健康保険\n子ども・子育て支援金\n厚生年金\n子ども・子育て拠出金\n雇用保険\n労災保険",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "base_amount",
+   "fieldtype": "Currency",
+   "label": "基礎額",
+   "options": "JPY",
+   "in_list_view": 1,
+   "description": "標準報酬月額・標準賞与額・対象賃金"
+  },
+  {
+   "fieldname": "rate",
+   "fieldtype": "Float",
+   "label": "料率（%）",
+   "precision": "6"
+  },
+  {
+   "fieldname": "exempt",
+   "fieldtype": "Check",
+   "label": "免除"
+  },
+  {
+   "fieldname": "column_break_5",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "total_amount",
+   "fieldtype": "Float",
+   "label": "全額",
+   "precision": "6"
+  },
+  {
+   "fieldname": "employee_amount",
+   "fieldtype": "Currency",
+   "label": "本人負担",
+   "options": "JPY",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "employer_amount",
+   "fieldtype": "Float",
+   "label": "事業主負担",
+   "precision": "6",
+   "in_list_view": 1,
+   "description": "1円未満を丸めない（2.2）"
+  },
+  {
+   "fieldname": "rate_doctype",
+   "fieldtype": "Link",
+   "label": "料率の DocType",
+   "options": "DocType"
+  },
+  {
+   "fieldname": "rate_version",
+   "fieldtype": "Dynamic Link",
+   "label": "料率の版",
+   "options": "rate_doctype"
+  },
+  {
+   "fieldname": "rate_row",
+   "fieldtype": "Data",
+   "label": "料率の版の行"
+  },
+  {
+   "fieldname": "grade_table",
+   "fieldtype": "Link",
+   "label": "等級表",
+   "options": "JP Standard Remuneration Table"
+  },
+  {
+   "fieldname": "note",
+   "fieldtype": "Data",
+   "label": "備考"
+  }
+ ],
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "links": []
+}

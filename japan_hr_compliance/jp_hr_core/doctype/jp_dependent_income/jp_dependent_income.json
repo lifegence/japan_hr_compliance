@@ -1,0 +1,64 @@
+{
+ "actions": [],
+ "creation": "2026-11-15 12:00:00.000000",
+ "modified": "2026-11-15 12:00:00.000000",
+ "modified_by": "Administrator",
+ "owner": "Administrator",
+ "doctype": "DocType",
+ "name": "JP Dependent Income",
+ "module": "JP HR Core",
+ "engine": "InnoDB",
+ "custom": 0,
+ "istable": 1,
+ "issingle": 0,
+ "is_submittable": 0,
+ "editable_grid": 1,
+ "track_changes": 0,
+ "field_order": [
+  "dependent_name",
+  "tax_year",
+  "estimated_income",
+  "tax_class"
+ ],
+ "fields": [
+  {
+   "fieldname": "dependent_name",
+   "fieldtype": "Data",
+   "label": "扶養親族の氏名",
+   "reqd": 1,
+   "in_list_view": 1,
+   "columns": 3,
+   "description": "扶養親族の表の氏名と同じ文字で入力"
+  },
+  {
+   "fieldname": "tax_year",
+   "fieldtype": "Int",
+   "label": "年分",
+   "reqd": 1,
+   "in_list_view": 1,
+   "columns": 1
+  },
+  {
+   "fieldname": "estimated_income",
+   "fieldtype": "Currency",
+   "label": "所得の見積額",
+   "options": "JPY",
+   "in_list_view": 1,
+   "columns": 2
+  },
+  {
+   "fieldname": "tax_class",
+   "fieldtype": "Select",
+   "label": "税の区分",
+   "options": "\n源泉控除対象配偶者\n控除対象扶養親族\n特定親族\n16歳未満の扶養親族\n対象外",
+   "in_list_view": 1,
+   "columns": 2,
+   "description": "判定規則と所得要件の値は年分別マスタ（B-6）に従う"
+  }
+ ],
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "links": []
+}

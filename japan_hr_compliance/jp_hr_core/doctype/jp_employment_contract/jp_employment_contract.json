@@ -1,0 +1,461 @@
+{
+ "actions": [],
+ "creation": "2026-11-15 12:00:00.000000",
+ "modified": "2026-11-15 12:00:00.000000",
+ "modified_by": "Administrator",
+ "owner": "Administrator",
+ "doctype": "DocType",
+ "name": "JP Employment Contract",
+ "module": "JP HR Core",
+ "engine": "InnoDB",
+ "custom": 0,
+ "istable": 0,
+ "issingle": 0,
+ "is_submittable": 1,
+ "editable_grid": 0,
+ "track_changes": 1,
+ "field_order": [
+  "employee",
+  "employee_name",
+  "company",
+  "column_break_1",
+  "valid_from",
+  "valid_to",
+  "change_reason",
+  "amended_from",
+  "retro_impact",
+  "section_1",
+  "employment_class",
+  "work_rule_class",
+  "employment_type",
+  "column_break_2",
+  "wage_type",
+  "working_time_system",
+  "is_manager",
+  "section_2",
+  "fixed_term",
+  "contract_start",
+  "contract_end",
+  "expected_period",
+  "student_type",
+  "column_break_3",
+  "renewal",
+  "renewal_criteria",
+  "renewal_limit_count",
+  "renewal_limit_years",
+  "section_3",
+  "weekly_hours_h",
+  "weekly_hours_m",
+  "weekly_hours",
+  "weekly_days",
+  "monthly_days",
+  "column_break_4",
+  "daily_hours_h",
+  "daily_hours_m",
+  "daily_hours",
+  "annual_days",
+  "annual_days_basis",
+  "section_4",
+  "workplace",
+  "job_category",
+  "department",
+  "designation",
+  "column_break_5",
+  "change_scope_place",
+  "change_scope_job"
+ ],
+ "fields": [
+  {
+   "fieldname": "employee",
+   "fieldtype": "Link",
+   "label": "従業員",
+   "options": "Employee",
+   "reqd": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "employee_name",
+   "fieldtype": "Data",
+   "label": "氏名",
+   "fetch_from": "employee.employee_name",
+   "read_only": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "company",
+   "fieldtype": "Link",
+   "label": "会社",
+   "options": "Company",
+   "fetch_from": "employee.company",
+   "read_only": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "valid_from",
+   "fieldtype": "Date",
+   "label": "適用開始日",
+   "reqd": 1,
+   "in_list_view": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "valid_to",
+   "fieldtype": "Date",
+   "label": "適用終了日",
+   "read_only": 1,
+   "allow_on_submit": 1,
+   "no_copy": 1,
+   "in_list_view": 1,
+   "description": "次の契約の適用開始日の前日、または退職日。自動で設定"
+  },
+  {
+   "fieldname": "change_reason",
+   "fieldtype": "Select",
+   "label": "変更理由",
+   "options": "\n入社\n更新\n条件変更\n雇用区分の転換\n無期転換\n異動\nその他"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "取消元",
+   "options": "JP Employment Contract",
+   "read_only": 1,
+   "no_copy": 1,
+   "print_hide": 1
+  },
+  {
+   "fieldname": "section_1",
+   "fieldtype": "Section Break",
+   "label": "雇用区分"
+  },
+  {
+   "fieldname": "employment_class",
+   "fieldtype": "Select",
+   "label": "雇用区分",
+   "options": "\n正社員\n契約社員\nパートタイマー\nアルバイト\n嘱託\nその他\n日雇い",
+   "reqd": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "description": "日雇いは労働者名簿の対象外・常時使用労働者数に含めない（会社設定で変更可）"
+  },
+  {
+   "fieldname": "work_rule_class",
+   "fieldtype": "Select",
+   "label": "就業規則の区分",
+   "options": "\n正社員用\nパートタイマー用\nその他",
+   "reqd": 1,
+   "description": "年次有給休暇の付与テーブル（B-3）の選択に使う"
+  },
+  {
+   "fieldname": "employment_type",
+   "fieldtype": "Link",
+   "label": "雇用形態（標準）",
+   "options": "Employment Type",
+   "read_only": 1,
+   "description": "雇用区分から自動で設定"
+  },
+  {
+   "fieldname": "column_break_2",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "wage_type",
+   "fieldtype": "Select",
+   "label": "賃金形態",
+   "options": "\n月給\n日給\n時給",
+   "reqd": 1
+  },
+  {
+   "fieldname": "working_time_system",
+   "fieldtype": "Select",
+   "label": "労働時間制度",
+   "options": "通常\nフレックスタイム制\nその他",
+   "default": "通常",
+   "reqd": 1,
+   "description": "変形労働時間制の扱いは別途決定（B-2）"
+  },
+  {
+   "fieldname": "is_manager",
+   "fieldtype": "Check",
+   "label": "管理監督者（労基法41条2号）"
+  },
+  {
+   "fieldname": "section_2",
+   "fieldtype": "Section Break",
+   "label": "契約期間"
+  },
+  {
+   "fieldname": "fixed_term",
+   "fieldtype": "Check",
+   "label": "有期契約"
+  },
+  {
+   "fieldname": "contract_start",
+   "fieldtype": "Date",
+   "label": "契約開始日"
+  },
+  {
+   "fieldname": "contract_end",
+   "fieldtype": "Date",
+   "label": "契約終了日",
+   "depends_on": "fixed_term",
+   "mandatory_depends_on": "fixed_term"
+  },
+  {
+   "fieldname": "expected_period",
+   "fieldtype": "Select",
+   "label": "雇用見込み期間",
+   "options": "\n期間の定めなし\n2か月を超える見込み\n31日以上2か月以内の見込み\n31日未満の見込み",
+   "reqd": 1
+  },
+  {
+   "fieldname": "student_type",
+   "fieldtype": "Select",
+   "label": "学生区分",
+   "options": "学生でない\n昼間学生\n夜間・通信・定時制等の学生",
+   "default": "学生でない",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_3",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "renewal",
+   "fieldtype": "Select",
+   "label": "更新の有無",
+   "options": "\n自動的に更新する\n更新する場合がある\n更新しない",
+   "depends_on": "fixed_term"
+  },
+  {
+   "fieldname": "renewal_criteria",
+   "fieldtype": "Small Text",
+   "label": "更新の判断基準",
+   "depends_on": "fixed_term"
+  },
+  {
+   "fieldname": "renewal_limit_count",
+   "fieldtype": "Int",
+   "label": "更新上限（回数）",
+   "depends_on": "fixed_term"
+  },
+  {
+   "fieldname": "renewal_limit_years",
+   "fieldtype": "Float",
+   "label": "更新上限（通算年数）",
+   "depends_on": "fixed_term"
+  },
+  {
+   "fieldname": "section_3",
+   "fieldtype": "Section Break",
+   "label": "所定労働条件"
+  },
+  {
+   "fieldname": "weekly_hours_h",
+   "fieldtype": "Int",
+   "label": "週所定労働時間（時間）"
+  },
+  {
+   "fieldname": "weekly_hours_m",
+   "fieldtype": "Int",
+   "label": "週所定労働時間（分）"
+  },
+  {
+   "fieldname": "weekly_hours",
+   "fieldtype": "Float",
+   "label": "週所定労働時間",
+   "read_only": 1,
+   "precision": "4",
+   "description": "時間・分から自動で計算（時間単位）"
+  },
+  {
+   "fieldname": "weekly_days",
+   "fieldtype": "Float",
+   "label": "週所定労働日数",
+   "precision": "1",
+   "description": "週で定めない場合は空欄にし、年間所定労働日数を入力"
+  },
+  {
+   "fieldname": "monthly_days",
+   "fieldtype": "Float",
+   "label": "月所定労働日数",
+   "precision": "2"
+  },
+  {
+   "fieldname": "column_break_4",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "daily_hours_h",
+   "fieldtype": "Int",
+   "label": "1日の所定労働時間（時間）"
+  },
+  {
+   "fieldname": "daily_hours_m",
+   "fieldtype": "Int",
+   "label": "1日の所定労働時間（分）"
+  },
+  {
+   "fieldname": "daily_hours",
+   "fieldtype": "Float",
+   "label": "1日の所定労働時間",
+   "read_only": 1,
+   "precision": "4"
+  },
+  {
+   "fieldname": "annual_days",
+   "fieldtype": "Int",
+   "label": "年間所定労働日数",
+   "mandatory_depends_on": "eval:!doc.weekly_days"
+  },
+  {
+   "fieldname": "annual_days_basis",
+   "fieldtype": "Select",
+   "label": "年間所定労働日数の種別",
+   "options": "\n確定\n目安",
+   "mandatory_depends_on": "eval:doc.annual_days",
+   "description": "「目安」は月の目安×12 等の見込み値（B-3 に渡す）"
+  },
+  {
+   "fieldname": "section_4",
+   "fieldtype": "Section Break",
+   "label": "就業場所・業務"
+  },
+  {
+   "fieldname": "workplace",
+   "fieldtype": "Link",
+   "label": "所属事業場",
+   "options": "JP Workplace",
+   "reqd": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "job_category",
+   "fieldtype": "Link",
+   "label": "業務（職種）",
+   "options": "JP Job Category",
+   "reqd": 1
+  },
+  {
+   "fieldname": "department",
+   "fieldtype": "Link",
+   "label": "部署",
+   "options": "Department"
+  },
+  {
+   "fieldname": "designation",
+   "fieldtype": "Link",
+   "label": "役職",
+   "options": "Designation"
+  },
+  {
+   "fieldname": "column_break_5",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "change_scope_place",
+   "fieldtype": "Small Text",
+   "label": "就業場所の変更の範囲"
+  },
+  {
+   "fieldname": "change_scope_job",
+   "fieldtype": "Small Text",
+   "label": "業務の変更の範囲"
+  },
+  {
+   "fieldname": "retro_impact",
+   "fieldtype": "Small Text",
+   "label": "遡及変更の影響（警告）",
+   "read_only": 1,
+   "no_copy": 1,
+   "depends_on": "retro_impact",
+   "description": "既に付与・控除に使われた期間を遡って変える場合の影響の一覧（EMP-27）"
+  }
+ ],
+ "permissions": [
+  {
+   "role": "System Manager",
+   "permlevel": 0,
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "email": 1,
+   "share": 1,
+   "submit": 1,
+   "cancel": 1,
+   "amend": 1
+  },
+  {
+   "role": "HR Manager",
+   "permlevel": 0,
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "email": 1,
+   "share": 1,
+   "submit": 1,
+   "cancel": 1,
+   "amend": 1
+  },
+  {
+   "role": "JP HR User",
+   "permlevel": 0,
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "email": 1,
+   "share": 1,
+   "submit": 1,
+   "cancel": 1,
+   "amend": 1
+  },
+  {
+   "role": "JP Payroll User",
+   "permlevel": 0,
+   "read": 1,
+   "report": 1,
+   "print": 1
+  },
+  {
+   "role": "JP My Number Officer",
+   "permlevel": 0,
+   "read": 1,
+   "report": 1,
+   "print": 1
+  },
+  {
+   "role": "Employee",
+   "permlevel": 0,
+   "read": 1,
+   "print": 1
+  }
+ ],
+ "sort_field": "valid_from",
+ "sort_order": "DESC",
+ "states": [],
+ "links": [],
+ "autoname": "JPEC-.YYYY.-.#####",
+ "naming_rule": "Expression (old style)",
+ "title_field": "employee_name",
+ "show_title_field_in_link": 0,
+ "search_fields": "employee_name,valid_from",
+ "description": "雇用契約の条件の履歴（EMP-20〜26）。任意の日付時点の条件は get_contract_at で取得する"
+}

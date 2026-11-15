@@ -1,0 +1,90 @@
+{
+ "actions": [],
+ "creation": "2026-11-15 12:00:00.000000",
+ "modified": "2026-11-15 12:00:00.000000",
+ "modified_by": "Administrator",
+ "owner": "Administrator",
+ "doctype": "DocType",
+ "name": "JP Workers Comp Rate Version",
+ "module": "JP Social Insurance",
+ "engine": "InnoDB",
+ "custom": 0,
+ "istable": 1,
+ "issingle": 0,
+ "is_submittable": 0,
+ "editable_grid": 1,
+ "track_changes": 0,
+ "field_order": [
+  "effective_from",
+  "rate_permille",
+  "status",
+  "column_break_2",
+  "source_title",
+  "source_published",
+  "source_url",
+  "confirmed_by",
+  "confirmed_on"
+ ],
+ "fields": [
+  {
+   "fieldname": "effective_from",
+   "fieldtype": "Date",
+   "label": "適用開始日",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "rate_permille",
+   "fieldtype": "Float",
+   "label": "労災保険率（1000分率）",
+   "precision": "3",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "状態",
+   "options": "下書き\n確認済\n廃止（訂正済）",
+   "default": "下書き",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "column_break_2",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "source_title",
+   "fieldtype": "Data",
+   "label": "資料名"
+  },
+  {
+   "fieldname": "source_published",
+   "fieldtype": "Date",
+   "label": "公表日"
+  },
+  {
+   "fieldname": "source_url",
+   "fieldtype": "Data",
+   "label": "URL",
+   "options": "URL"
+  },
+  {
+   "fieldname": "confirmed_by",
+   "fieldtype": "Link",
+   "label": "確認者",
+   "options": "User"
+  },
+  {
+   "fieldname": "confirmed_on",
+   "fieldtype": "Date",
+   "label": "確認日"
+  }
+ ],
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "links": []
+}

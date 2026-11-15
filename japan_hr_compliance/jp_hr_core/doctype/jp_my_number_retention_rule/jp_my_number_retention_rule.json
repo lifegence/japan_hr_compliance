@@ -1,0 +1,136 @@
+{
+ "actions": [],
+ "creation": "2026-11-15 18:00:00.000000",
+ "modified": "2026-11-15 18:00:00.000000",
+ "modified_by": "Administrator",
+ "owner": "Administrator",
+ "doctype": "DocType",
+ "name": "JP My Number Retention Rule",
+ "module": "JP HR Core",
+ "engine": "InnoDB",
+ "custom": 0,
+ "istable": 0,
+ "issingle": 0,
+ "is_submittable": 0,
+ "editable_grid": 0,
+ "track_changes": 1,
+ "field_order": [
+  "document_type",
+  "legal_basis",
+  "applies_to",
+  "column_break_1",
+  "start_event",
+  "years",
+  "enabled",
+  "remarks"
+ ],
+ "fields": [
+  {
+   "fieldname": "document_type",
+   "fieldtype": "Data",
+   "label": "書類",
+   "reqd": 1,
+   "unique": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "legal_basis",
+   "fieldtype": "Data",
+   "label": "根拠法令",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "applies_to",
+   "fieldtype": "Select",
+   "label": "対象",
+   "options": "本人・扶養親族\n本人\n扶養親族",
+   "default": "本人・扶養親族",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "start_event",
+   "fieldtype": "Select",
+   "label": "起算",
+   "reqd": 1,
+   "in_list_view": 1,
+   "options": "事務の終了日の翌日\n事務の終了日の属する年の翌年1月11日（提出期限の属する年の翌年1月10日の翌日）"
+  },
+  {
+   "fieldname": "years",
+   "fieldtype": "Int",
+   "label": "保存年数",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "enabled",
+   "fieldtype": "Check",
+   "label": "有効",
+   "default": "1"
+  },
+  {
+   "fieldname": "remarks",
+   "fieldtype": "Small Text",
+   "label": "備考"
+  }
+ ],
+ "permissions": [
+  {
+   "role": "System Manager",
+   "permlevel": 0,
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "email": 1,
+   "share": 1
+  },
+  {
+   "role": "HR Manager",
+   "permlevel": 0,
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "email": 1,
+   "share": 1
+  },
+  {
+   "role": "JP My Number Officer",
+   "permlevel": 0,
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "email": 1,
+   "share": 1
+  },
+  {
+   "role": "JP HR User",
+   "permlevel": 0,
+   "read": 1,
+   "report": 1,
+   "print": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "links": [],
+ "autoname": "field:document_type",
+ "naming_rule": "By fieldname",
+ "description": "マイナンバーを記載した書類ごとの保存期限（EMP-66）。番号の廃棄可能日は、適用されるすべての書類の期限のうち最も遅い日"
+}

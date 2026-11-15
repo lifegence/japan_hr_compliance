@@ -1,0 +1,203 @@
+{
+ "actions": [],
+ "creation": "2026-11-15 12:00:00.000000",
+ "modified": "2026-11-15 12:00:00.000000",
+ "modified_by": "Administrator",
+ "owner": "Administrator",
+ "doctype": "DocType",
+ "name": "JP Leave Designation",
+ "module": "JP Leave",
+ "engine": "InnoDB",
+ "custom": 0,
+ "istable": 0,
+ "issingle": 0,
+ "is_submittable": 1,
+ "editable_grid": 0,
+ "track_changes": 1,
+ "field_order": [
+  "employee",
+  "employee_name",
+  "company",
+  "obligation",
+  "cb_1",
+  "designated_date",
+  "half_day",
+  "half_day_part",
+  "leave_application",
+  "sec_hearing",
+  "hearing_date",
+  "hearing_method",
+  "cb_2",
+  "employee_wish",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "employee",
+   "fieldtype": "Link",
+   "label": "従業員",
+   "options": "Employee",
+   "reqd": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "employee_name",
+   "fieldtype": "Data",
+   "label": "氏名",
+   "fetch_from": "employee.employee_name",
+   "read_only": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "company",
+   "fieldtype": "Link",
+   "label": "会社",
+   "options": "Company",
+   "fetch_from": "employee.company",
+   "read_only": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "obligation",
+   "fieldtype": "Link",
+   "label": "履行期間",
+   "options": "JP Five Day Obligation"
+  },
+  {
+   "fieldname": "cb_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "designated_date",
+   "fieldtype": "Date",
+   "label": "指定日",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "half_day",
+   "fieldtype": "Check",
+   "label": "半日"
+  },
+  {
+   "fieldname": "half_day_part",
+   "fieldtype": "Select",
+   "label": "午前／午後",
+   "options": "\n午前\n午後",
+   "depends_on": "half_day",
+   "mandatory_depends_on": "half_day"
+  },
+  {
+   "fieldname": "leave_application",
+   "fieldtype": "Link",
+   "label": "作成した休暇申請",
+   "options": "Leave Application",
+   "read_only": 1,
+   "allow_on_submit": 1
+  },
+  {
+   "fieldname": "sec_hearing",
+   "fieldtype": "Section Break",
+   "label": "意見聴取（労基則24条の6）"
+  },
+  {
+   "fieldname": "hearing_date",
+   "fieldtype": "Date",
+   "label": "意見聴取日",
+   "reqd": 1
+  },
+  {
+   "fieldname": "hearing_method",
+   "fieldtype": "Select",
+   "label": "聴取の方法",
+   "options": "面談\n書面\n電子メール\nその他",
+   "reqd": 1
+  },
+  {
+   "fieldname": "cb_2",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "employee_wish",
+   "fieldtype": "Small Text",
+   "label": "本人の希望"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "取消元",
+   "options": "JP Leave Designation",
+   "read_only": 1,
+   "no_copy": 1,
+   "print_hide": 1
+  }
+ ],
+ "permissions": [
+  {
+   "role": "System Manager",
+   "permlevel": 0,
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "email": 1,
+   "share": 1,
+   "submit": 1,
+   "cancel": 1,
+   "amend": 1
+  },
+  {
+   "role": "HR Manager",
+   "permlevel": 0,
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "email": 1,
+   "share": 1,
+   "submit": 1,
+   "cancel": 1,
+   "amend": 1
+  },
+  {
+   "role": "JP HR User",
+   "permlevel": 0,
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "email": 1,
+   "share": 1,
+   "submit": 1,
+   "cancel": 1,
+   "amend": 1
+  },
+  {
+   "role": "HR User",
+   "permlevel": 0,
+   "read": 1,
+   "report": 1,
+   "print": 1,
+   "export": 1
+  }
+ ],
+ "sort_field": "designated_date",
+ "sort_order": "DESC",
+ "states": [],
+ "links": [],
+ "autoname": "JPLD-.YYYY.-.#####",
+ "naming_rule": "Expression (old style)",
+ "title_field": "employee_name",
+ "show_title_field_in_link": 0,
+ "description": "使用者の時季指定（LVR-54）。確定で区分「時季指定」の休暇申請を作成する"
+}

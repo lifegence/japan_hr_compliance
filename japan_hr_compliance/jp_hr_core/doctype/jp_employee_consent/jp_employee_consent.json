@@ -1,0 +1,222 @@
+{
+ "actions": [],
+ "creation": "2026-11-15 12:00:00.000000",
+ "modified": "2026-11-15 12:00:00.000000",
+ "modified_by": "Administrator",
+ "owner": "Administrator",
+ "doctype": "DocType",
+ "name": "JP Employee Consent",
+ "module": "JP HR Core",
+ "engine": "InnoDB",
+ "custom": 0,
+ "istable": 0,
+ "issingle": 0,
+ "is_submittable": 0,
+ "editable_grid": 0,
+ "track_changes": 1,
+ "field_order": [
+  "employee",
+  "employee_name",
+  "company",
+  "consent_type",
+  "status",
+  "column_break_1",
+  "consent_datetime",
+  "method",
+  "text_version",
+  "user",
+  "ip_address",
+  "section_1",
+  "accounts_snapshot",
+  "wage_scope",
+  "start_period",
+  "section_2",
+  "attachment",
+  "remarks"
+ ],
+ "fields": [
+  {
+   "fieldname": "employee",
+   "fieldtype": "Link",
+   "label": "従業員",
+   "options": "Employee",
+   "reqd": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "employee_name",
+   "fieldtype": "Data",
+   "label": "氏名",
+   "fetch_from": "employee.employee_name",
+   "read_only": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "company",
+   "fieldtype": "Link",
+   "label": "会社",
+   "options": "Company",
+   "fetch_from": "employee.company",
+   "read_only": 1
+  },
+  {
+   "fieldname": "consent_type",
+   "fieldtype": "Select",
+   "label": "同意・承諾の種類",
+   "options": "\n給与明細の電子交付\n源泉徴収票の電子交付\n口座振込\n労働条件通知書の電子交付",
+   "reqd": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "区分",
+   "options": "同意\n撤回",
+   "default": "同意",
+   "reqd": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "consent_datetime",
+   "fieldtype": "Datetime",
+   "label": "日時",
+   "reqd": 1,
+   "default": "now",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "method",
+   "fieldtype": "Select",
+   "label": "方法",
+   "options": "Web\n書面",
+   "default": "Web",
+   "reqd": 1
+  },
+  {
+   "fieldname": "text_version",
+   "fieldtype": "Data",
+   "label": "同意文面の版"
+  },
+  {
+   "fieldname": "user",
+   "fieldtype": "Link",
+   "label": "操作したユーザー",
+   "options": "User",
+   "read_only": 1
+  },
+  {
+   "fieldname": "ip_address",
+   "fieldtype": "Data",
+   "label": "IP アドレス",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_1",
+   "fieldtype": "Section Break",
+   "label": "口座振込",
+   "depends_on": "eval:doc.consent_type=='口座振込'"
+  },
+  {
+   "fieldname": "accounts_snapshot",
+   "fieldtype": "Small Text",
+   "label": "同意した口座",
+   "read_only": 1,
+   "description": "同意時点の振込口座（自動で記録）"
+  },
+  {
+   "fieldname": "wage_scope",
+   "fieldtype": "Small Text",
+   "label": "対象の賃金・金額",
+   "description": "例：月例給与と賞与の全額"
+  },
+  {
+   "fieldname": "start_period",
+   "fieldtype": "Data",
+   "label": "開始希望時期",
+   "description": "例：2027年4月支給分から"
+  },
+  {
+   "fieldname": "section_2",
+   "fieldtype": "Section Break",
+   "label": "添付・備考"
+  },
+  {
+   "fieldname": "attachment",
+   "fieldtype": "Attach",
+   "label": "書面の写し"
+  },
+  {
+   "fieldname": "remarks",
+   "fieldtype": "Small Text",
+   "label": "備考"
+  }
+ ],
+ "permissions": [
+  {
+   "role": "System Manager",
+   "permlevel": 0,
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "email": 1,
+   "share": 1
+  },
+  {
+   "role": "HR Manager",
+   "permlevel": 0,
+   "read": 1,
+   "report": 1,
+   "print": 1,
+   "create": 1
+  },
+  {
+   "role": "JP Payroll User",
+   "permlevel": 0,
+   "read": 1,
+   "report": 1,
+   "print": 1,
+   "create": 1
+  },
+  {
+   "role": "JP HR User",
+   "permlevel": 0,
+   "read": 1,
+   "report": 1,
+   "print": 1
+  },
+  {
+   "role": "Employee",
+   "permlevel": 0,
+   "read": 1,
+   "print": 1
+  },
+  {
+   "role": "Employee Self Service",
+   "permlevel": 0,
+   "read": 1,
+   "print": 1
+  }
+ ],
+ "sort_field": "consent_datetime",
+ "sort_order": "DESC",
+ "states": [],
+ "links": [],
+ "autoname": "JPCS-.YYYY.-.#####",
+ "naming_rule": "Expression (old style)",
+ "title_field": "employee_name",
+ "show_title_field_in_link": 0,
+ "description": "口座振込の同意・電子交付の承諾とその撤回の記録（EMP-35〜37）。記録は追記のみで、変更・削除はできない",
+ "in_create": 0
+}

@@ -1,0 +1,49 @@
+{% extends "templates/web.html" %}
+
+{% block page_content %}
+<h2>{{ _("年次有給休暇") }}</h2>
+<p>{{ employee_name }} さんの年次有給休暇管理簿です（{{ leave.today }} 時点）。</p>
+<p class="h4">{{ _("残日数") }}：{{ leave.balance }} 日</p>
+
+{% if leave.expiring %}
+<div class="alert alert-warning">
+	{% for g in leave.expiring %}
+	<div>{{ g.grant_date }} 付与分の残り {{ g.remaining_days }} 日は {{ g.expiry_date }} まで使えます（翌日に時効で消滅します）。</div>
+	{% endfor %}
+</div>
+{% endif %}
+
+<h4>{{ _("年5日の取得義務") }}</h4>
+<table class="table table-sm table-bordered">
+	<thead><tr><th>履行期間</th><th>必要日数</th><th>取得日数</th><th>取得予定</th><th>未取得</th><th>状態</th></tr></thead>
+	<tbody>
+	{% for o in leave.obligations %}
+	<tr><td>{{ o.period_start }}〜{{ o.period_end }}</td><td>{{ o.required_days }}</td><td>{{ o.taken_days }}</td>
+		<td>{{ o.planned_days }}</td><td>{{ o.shortfall }}</td><td>{{ o.status }}</td></tr>
+	{% else %}
+	<tr><td colspan="6">対象の期間はありません。</td></tr>
+	{% endfor %}
+	</tbody>
+</table>
+
+<h4>{{ _("付与") }}</h4>
+<table class="table table-sm table-bordered">
+	<thead><tr><th>基準日（付与日）</th><th>種別</th><th>付与日数</th><th>取得</th><th>残日数</th><th>失効・消滅</th><th>最終使用日</th><th>状態</th></tr></thead>
+	<tbody>
+	{% for g in leave.grants %}
+	<tr><td>{{ g.grant_date }}</td><td>{{ g.grant_kind }}</td><td>{{ g.days }}</td><td>{{ g.used_days }}</td>
+		<td>{{ g.remaining_days }}</td><td>{{ g.lapsed_days }}</td><td>{{ g.expiry_date }}</td><td>{{ g.status }}</td></tr>
+	{% endfor %}
+	</tbody>
+</table>
+
+<h4>{{ _("取得") }}</h4>
+<table class="table table-sm table-bordered">
+	<thead><tr><th>取得日（時季）</th><th>日数</th><th>半日</th><th>区分</th></tr></thead>
+	<tbody>
+	{% for t in leave.takes %}
+	<tr><td>{{ t.leave_date }}</td><td>{{ t.days }}</td><td>{{ t.half_day_part or "" }}</td><td>{{ t.take_kind }}</td></tr>
+	{% endfor %}
+	</tbody>
+</table>
+{% endblock %}

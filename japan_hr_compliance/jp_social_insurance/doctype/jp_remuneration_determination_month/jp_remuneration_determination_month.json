@@ -1,0 +1,95 @@
+{
+ "actions": [],
+ "creation": "2026-11-15 12:00:00.000000",
+ "modified": "2026-11-15 12:00:00.000000",
+ "modified_by": "Administrator",
+ "owner": "Administrator",
+ "doctype": "DocType",
+ "name": "JP Remuneration Determination Month",
+ "module": "JP Social Insurance",
+ "engine": "InnoDB",
+ "custom": 0,
+ "istable": 1,
+ "issingle": 0,
+ "is_submittable": 0,
+ "editable_grid": 1,
+ "track_changes": 0,
+ "field_order": [
+  "pay_month",
+  "salary_slip",
+  "base_days",
+  "cash",
+  "in_kind",
+  "column_break_3",
+  "retroactive_pay",
+  "excluded_reason",
+  "included"
+ ],
+ "fields": [
+  {
+   "fieldname": "pay_month",
+   "fieldtype": "Date",
+   "label": "支払月",
+   "reqd": 1,
+   "in_list_view": 1,
+   "description": "支払日の属する月の1日"
+  },
+  {
+   "fieldname": "salary_slip",
+   "fieldtype": "Link",
+   "label": "給与明細",
+   "options": "Salary Slip",
+   "read_only": 1
+  },
+  {
+   "fieldname": "base_days",
+   "fieldtype": "Float",
+   "label": "支払基礎日数",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "cash",
+   "fieldtype": "Currency",
+   "label": "通貨",
+   "options": "JPY",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "in_kind",
+   "fieldtype": "Currency",
+   "label": "現物",
+   "options": "JPY",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "column_break_3",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "retroactive_pay",
+   "fieldtype": "Currency",
+   "label": "遡及差額",
+   "options": "JPY",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "excluded_reason",
+   "fieldtype": "Data",
+   "label": "平均から除く理由",
+   "in_list_view": 1,
+   "description": "途中入社で1か月分に満たない月・休職で低額の月など"
+  },
+  {
+   "fieldname": "included",
+   "fieldtype": "Check",
+   "label": "平均に算入",
+   "read_only": 1,
+   "in_list_view": 1
+  }
+ ],
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "links": []
+}

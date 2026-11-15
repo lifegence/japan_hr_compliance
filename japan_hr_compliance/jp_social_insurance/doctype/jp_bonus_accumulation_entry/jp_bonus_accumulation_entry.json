@@ -1,0 +1,82 @@
+{
+ "actions": [],
+ "creation": "2026-11-15 12:00:00.000000",
+ "modified": "2026-11-15 12:00:00.000000",
+ "modified_by": "Administrator",
+ "owner": "Administrator",
+ "doctype": "DocType",
+ "name": "JP Bonus Accumulation Entry",
+ "module": "JP Social Insurance",
+ "engine": "InnoDB",
+ "custom": 0,
+ "istable": 1,
+ "issingle": 0,
+ "is_submittable": 0,
+ "editable_grid": 1,
+ "track_changes": 0,
+ "field_order": [
+  "salary_slip",
+  "pay_date",
+  "standard_bonus",
+  "column_break_4",
+  "health_standard_bonus",
+  "pension_standard_bonus",
+  "treatment",
+  "report_required"
+ ],
+ "fields": [
+  {
+   "fieldname": "salary_slip",
+   "fieldtype": "Link",
+   "label": "給与明細",
+   "options": "Salary Slip",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "pay_date",
+   "fieldtype": "Date",
+   "label": "支給日",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "standard_bonus",
+   "fieldtype": "Currency",
+   "label": "標準賞与額",
+   "options": "JPY",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "column_break_4",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "health_standard_bonus",
+   "fieldtype": "Currency",
+   "label": "健保の標準賞与額",
+   "options": "JPY",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "pension_standard_bonus",
+   "fieldtype": "Currency",
+   "label": "厚年の標準賞与額",
+   "options": "JPY",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "treatment",
+   "fieldtype": "Data",
+   "label": "扱い"
+  },
+  {
+   "fieldname": "report_required",
+   "fieldtype": "Check",
+   "label": "賞与支払届の対象"
+  }
+ ],
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "links": []
+}

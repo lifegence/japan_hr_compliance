@@ -1,0 +1,154 @@
+{
+ "actions": [],
+ "creation": "2026-11-15 12:00:00.000000",
+ "modified": "2026-11-15 13:00:00.000000",
+ "modified_by": "Administrator",
+ "owner": "Administrator",
+ "doctype": "DocType",
+ "name": "JP Workplace",
+ "module": "JP HR Core",
+ "engine": "InnoDB",
+ "custom": 0,
+ "istable": 0,
+ "issingle": 0,
+ "is_submittable": 0,
+ "editable_grid": 0,
+ "track_changes": 1,
+ "field_order": [
+  "workplace_name",
+  "company",
+  "branch",
+  "disabled",
+  "column_break_1",
+  "address",
+  "labour_office",
+  "wc_business_type",
+  "section_1",
+  "insurance_units"
+ ],
+ "fields": [
+  {
+   "fieldname": "workplace_name",
+   "fieldtype": "Data",
+   "label": "事業場名",
+   "reqd": 1,
+   "unique": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "company",
+   "fieldtype": "Link",
+   "label": "会社",
+   "options": "Company",
+   "reqd": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "branch",
+   "fieldtype": "Link",
+   "label": "支店（標準）",
+   "options": "Branch",
+   "description": "従業員の branch に同期する"
+  },
+  {
+   "fieldname": "disabled",
+   "fieldtype": "Check",
+   "label": "無効"
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "address",
+   "fieldtype": "Small Text",
+   "label": "所在地"
+  },
+  {
+   "fieldname": "labour_office",
+   "fieldtype": "Data",
+   "label": "管轄の労働基準監督署"
+  },
+  {
+   "fieldname": "wc_business_type",
+   "fieldtype": "Link",
+   "label": "労災保険の事業の種類",
+   "description": "労災保険率の業種（B-5 の JP Workers Comp Rate）",
+   "options": "JP Workers Comp Rate"
+  },
+  {
+   "fieldname": "section_1",
+   "fieldtype": "Section Break",
+   "label": "保険の適用（制度別）"
+  },
+  {
+   "fieldname": "insurance_units",
+   "fieldtype": "Table",
+   "label": "保険の適用",
+   "options": "JP Workplace Insurance Unit"
+  }
+ ],
+ "permissions": [
+  {
+   "role": "System Manager",
+   "permlevel": 0,
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "email": 1,
+   "share": 1
+  },
+  {
+   "role": "HR Manager",
+   "permlevel": 0,
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "email": 1,
+   "share": 1
+  },
+  {
+   "role": "JP HR User",
+   "permlevel": 0,
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "email": 1,
+   "share": 1
+  },
+  {
+   "role": "JP Payroll User",
+   "permlevel": 0,
+   "read": 1,
+   "report": 1,
+   "print": 1
+  },
+  {
+   "role": "JP My Number Officer",
+   "permlevel": 0,
+   "read": 1,
+   "report": 1,
+   "print": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "links": [],
+ "autoname": "field:workplace_name",
+ "naming_rule": "By fieldname",
+ "search_fields": "company"
+}

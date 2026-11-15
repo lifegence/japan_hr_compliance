@@ -1,0 +1,142 @@
+{
+ "actions": [],
+ "creation": "2026-11-15 12:00:00.000000",
+ "modified": "2026-11-15 12:00:00.000000",
+ "modified_by": "Administrator",
+ "owner": "Administrator",
+ "doctype": "DocType",
+ "name": "JP Leave Grant Table",
+ "module": "JP Leave",
+ "engine": "InnoDB",
+ "custom": 0,
+ "istable": 0,
+ "issingle": 0,
+ "is_submittable": 0,
+ "editable_grid": 0,
+ "track_changes": 1,
+ "field_order": [
+  "table_name",
+  "work_rule_class",
+  "company",
+  "cb_1",
+  "is_legal_default",
+  "below_statutory",
+  "warning_text",
+  "sec_rows",
+  "rows"
+ ],
+ "fields": [
+  {
+   "fieldname": "table_name",
+   "fieldtype": "Data",
+   "label": "名称",
+   "reqd": 1,
+   "unique": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "work_rule_class",
+   "fieldtype": "Select",
+   "label": "就業規則の区分",
+   "options": "\n正社員用\nパートタイマー用\nその他",
+   "in_list_view": 1,
+   "description": "基準日時点の雇用契約の就業規則の区分で使い分ける（LVR-04）。空欄は法定の表として使う"
+  },
+  {
+   "fieldname": "company",
+   "fieldtype": "Link",
+   "label": "会社",
+   "options": "Company",
+   "description": "空欄はすべての会社に適用"
+  },
+  {
+   "fieldname": "cb_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "is_legal_default",
+   "fieldtype": "Check",
+   "label": "法定の表（初期データ）",
+   "read_only": 1
+  },
+  {
+   "fieldname": "below_statutory",
+   "fieldtype": "Check",
+   "label": "法定を下回る行がある",
+   "read_only": 1
+  },
+  {
+   "fieldname": "warning_text",
+   "fieldtype": "Small Text",
+   "label": "法定との照合の警告",
+   "read_only": 1
+  },
+  {
+   "fieldname": "sec_rows",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "rows",
+   "fieldtype": "Table",
+   "label": "付与日数",
+   "options": "JP Leave Grant Table Row",
+   "reqd": 1
+  }
+ ],
+ "permissions": [
+  {
+   "role": "System Manager",
+   "permlevel": 0,
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "email": 1,
+   "share": 1
+  },
+  {
+   "role": "HR Manager",
+   "permlevel": 0,
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "email": 1,
+   "share": 1
+  },
+  {
+   "role": "JP HR User",
+   "permlevel": 0,
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "email": 1,
+   "share": 1
+  },
+  {
+   "role": "HR User",
+   "permlevel": 0,
+   "read": 1,
+   "report": 1,
+   "print": 1,
+   "export": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "links": [],
+ "autoname": "field:table_name",
+ "naming_rule": "By fieldname",
+ "description": "就業規則ごとの付与テーブル（LVR-02・03）"
+}

@@ -1,0 +1,273 @@
+{
+ "actions": [],
+ "creation": "2026-11-15 18:00:00.000000",
+ "modified": "2026-11-15 18:00:00.000000",
+ "modified_by": "Administrator",
+ "owner": "Administrator",
+ "doctype": "DocType",
+ "name": "JP My Number",
+ "module": "JP HR Core",
+ "engine": "InnoDB",
+ "custom": 0,
+ "istable": 0,
+ "issingle": 0,
+ "is_submittable": 0,
+ "editable_grid": 0,
+ "track_changes": 1,
+ "field_order": [
+  "purpose_html",
+  "owner_type",
+  "employee",
+  "employee_name",
+  "company",
+  "dependent_row",
+  "dependent_name",
+  "column_break_1",
+  "masked_number",
+  "my_number",
+  "status",
+  "section_1",
+  "number_check_doc",
+  "identity_check_doc",
+  "verified_on",
+  "column_break_2",
+  "verified_by",
+  "purpose_notified_on",
+  "verification_status",
+  "section_2",
+  "work_end_date",
+  "disposal_due",
+  "disposal_basis",
+  "column_break_3",
+  "disposed_on",
+  "disposed_by"
+ ],
+ "fields": [
+  {
+   "fieldname": "purpose_html",
+   "fieldtype": "HTML",
+   "label": "利用目的",
+   "options": "<div class=\"alert alert-warning\">利用目的：社会保障・税に関する手続き（番号法9条）に限ります。目的外の利用・提供はできません。番号の表示は事務取扱担当者が理由を入力した場合に限り、すべての操作が記録されます。</div>"
+  },
+  {
+   "fieldname": "owner_type",
+   "fieldtype": "Select",
+   "label": "区分",
+   "options": "本人\n扶養親族",
+   "default": "本人",
+   "reqd": 1,
+   "in_list_view": 1,
+   "set_only_once": 1
+  },
+  {
+   "fieldname": "employee",
+   "fieldtype": "Link",
+   "label": "従業員",
+   "options": "Employee",
+   "reqd": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "set_only_once": 1
+  },
+  {
+   "fieldname": "employee_name",
+   "fieldtype": "Data",
+   "label": "氏名",
+   "fetch_from": "employee.employee_name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "company",
+   "fieldtype": "Link",
+   "label": "会社",
+   "options": "Company",
+   "fetch_from": "employee.company",
+   "read_only": 1
+  },
+  {
+   "fieldname": "dependent_row",
+   "fieldtype": "Data",
+   "label": "扶養親族（行 ID）",
+   "depends_on": "eval:doc.owner_type=='扶養親族'",
+   "set_only_once": 1,
+   "description": "従業員の扶養親族の表の行。扶養親族の氏名から選ぶ"
+  },
+  {
+   "fieldname": "dependent_name",
+   "fieldtype": "Data",
+   "label": "扶養親族の氏名",
+   "depends_on": "eval:doc.owner_type=='扶養親族'",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "masked_number",
+   "fieldtype": "Data",
+   "label": "個人番号",
+   "read_only": 1,
+   "in_list_view": 1,
+   "description": "常に全桁マスクで表示（下4桁も表示しない）"
+  },
+  {
+   "fieldname": "my_number",
+   "fieldtype": "Password",
+   "label": "個人番号（入力）",
+   "permlevel": 1,
+   "length": 20,
+   "print_hide": 1,
+   "report_hide": 1,
+   "no_copy": 1,
+   "description": "12桁。暗号化して保存し、画面・帳票・エクスポートには出しません。表示は「番号を表示」から理由を入力して行います"
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "状態",
+   "options": "有効\n廃棄済み",
+   "default": "有効",
+   "read_only": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "section_1",
+   "fieldtype": "Section Break",
+   "label": "取得時の本人確認（番号法16条）"
+  },
+  {
+   "fieldname": "number_check_doc",
+   "fieldtype": "Select",
+   "label": "番号確認の書類",
+   "options": "\n個人番号カード\n通知カード\n個人番号が記載された住民票の写し等\nその他"
+  },
+  {
+   "fieldname": "identity_check_doc",
+   "fieldtype": "Select",
+   "label": "身元確認の書類",
+   "options": "\n個人番号カード\n運転免許証\n旅券\n在留カード\nその他"
+  },
+  {
+   "fieldname": "verified_on",
+   "fieldtype": "Date",
+   "label": "確認日"
+  },
+  {
+   "fieldname": "column_break_2",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "verified_by",
+   "fieldtype": "Link",
+   "label": "確認者",
+   "options": "User"
+  },
+  {
+   "fieldname": "purpose_notified_on",
+   "fieldtype": "Date",
+   "label": "利用目的の通知日"
+  },
+  {
+   "fieldname": "verification_status",
+   "fieldtype": "Select",
+   "label": "本人確認",
+   "options": "未確認\n確認済",
+   "default": "未確認",
+   "read_only": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "section_2",
+   "fieldtype": "Section Break",
+   "label": "保管・廃棄"
+  },
+  {
+   "fieldname": "work_end_date",
+   "fieldtype": "Date",
+   "label": "番号を使う事務の終了日",
+   "description": "空欄なら、本人は退職日、扶養親族は扶養から外れた日（異動の記録）を使う"
+  },
+  {
+   "fieldname": "disposal_due",
+   "fieldtype": "Date",
+   "label": "廃棄可能日",
+   "read_only": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "disposal_basis",
+   "fieldtype": "Small Text",
+   "label": "廃棄可能日の根拠（書類と保存期限）",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_3",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "disposed_on",
+   "fieldtype": "Date",
+   "label": "廃棄日",
+   "read_only": 1,
+   "no_copy": 1
+  },
+  {
+   "fieldname": "disposed_by",
+   "fieldtype": "Link",
+   "label": "廃棄の実施者",
+   "options": "User",
+   "read_only": 1,
+   "no_copy": 1
+  }
+ ],
+ "permissions": [
+  {
+   "role": "JP My Number Officer",
+   "permlevel": 0,
+   "read": 1,
+   "write": 1,
+   "create": 1
+  },
+  {
+   "role": "JP My Number Officer",
+   "permlevel": 1,
+   "read": 1,
+   "write": 1
+  },
+  {
+   "role": "System Manager",
+   "permlevel": 0,
+   "read": 1
+  },
+  {
+   "role": "HR Manager",
+   "permlevel": 0,
+   "read": 1
+  },
+  {
+   "role": "JP HR User",
+   "permlevel": 0,
+   "read": 1
+  },
+  {
+   "role": "JP Payroll User",
+   "permlevel": 0,
+   "read": 1
+  },
+  {
+   "role": "Employee",
+   "permlevel": 0,
+   "read": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "links": [],
+ "autoname": "JPMN-.#####",
+ "naming_rule": "Expression (old style)",
+ "title_field": "employee_name",
+ "description": "マイナンバー（EMP-60〜67）。番号は暗号化して保存し、事務取扱担当者のみ理由を入力して復号できる。削除はできない（廃棄を使う）"
+}

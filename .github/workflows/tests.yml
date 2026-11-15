@@ -1,0 +1,74 @@
+name: Tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    container:
+      image: frappe/bench:latest
+      options: --user root
+    services:
+      mariadb:
+        image: mariadb:10.6
+        env:
+          MARIADB_ROOT_PASSWORD: root
+        options: >-
+          --health-cmd="mysqladmin ping -proot"
+          --health-interval=10s --health-timeout=5s --health-retries=10
+      redis-cache:
+        image: redis:7-alpine
+      redis-queue:
+        image: redis:7-alpine
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: japan_hr_compliance
+      - name: Install Japanese fonts for PDF tests
+        run: |
+          apt-get update -qq
+          apt-get install -y -qq fonts-noto-cjk
+      - name: Set up bench
+        run: |
+          chown -R frappe:frappe "$GITHUB_WORKSPACE"
+          git config --system --add safe.directory '*'
+          sudo -u frappe -H bash -lc "
+            set -e
+            export PYENV_ROOT=\$HOME/.pyenv
+            export PATH=\$PYENV_ROOT/shims:\$PYENV_ROOT/bin:\$HOME/.local/bin:\$(ls -d \$HOME/.nvm/versions/node/v24*/bin | tail -1):\$PATH
+            printf '[client]\nskip-ssl\n' > ~/.my.cnf && chmod 600 ~/.my.cnf
+            cd ~
+            bench init --python python3.14 --frappe-branch version-16 --skip-redis-config-generation --skip-assets frappe-bench
+            cd frappe-bench
+            bench set-config -g db_host mariadb
+            bench set-config -g redis_cache redis://redis-cache:6379
+            bench set-config -g redis_queue redis://redis-queue:6379
+            bench set-config -g redis_socketio redis://redis-queue:6379
+            bench get-app --branch version-16 --skip-assets erpnext
+            bench get-app --branch version-16 --skip-assets hrms
+            bench get-app --skip-assets japan_compliance https://github.com/lifegence/japan-compliance
+            bench get-app --skip-assets japan_hr_compliance '$GITHUB_WORKSPACE/japan_hr_compliance'
+            bench build
+            bench new-site test.localhost --db-root-password root --admin-password admin --mariadb-user-host-login-scope='%'
+            bench --site test.localhost install-app erpnext hrms japan_compliance japan_hr_compliance
+            bench --site test.localhost set-config allow_tests true
+            bench --site test.localhost set-config host_name http://localhost:8000
+          "
+      - name: Run tests
+        run: |
+          sudo -u frappe -H bash -lc "
+            set -e
+            export PYENV_ROOT=\$HOME/.pyenv
+            export PATH=\$PYENV_ROOT/shims:\$PYENV_ROOT/bin:\$HOME/.local/bin:\$(ls -d \$HOME/.nvm/versions/node/v24*/bin | tail -1):\$PATH
+            cd ~/frappe-bench
+            nohup bench serve --port 8000 > /tmp/serve.log 2>&1 &
+            for i in \$(seq 1 30); do curl -sf -o /dev/null http://localhost:8000/ && break; sleep 2; done
+            bench --site test.localhost run-tests --app japan_hr_compliance
+          "

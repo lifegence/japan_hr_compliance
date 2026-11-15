@@ -1,0 +1,42 @@
+{% extends "templates/web.html" %}
+
+{% block page_content %}
+<h2>{{ _("同意・承諾の確認") }}</h2>
+<p>{{ employee_name }} さん。次の項目ごとに選んでください。選ばなかった項目は記録しません。</p>
+<form id="jp-consent-form">
+{% for item in items %}
+	<fieldset class="mb-4 p-3 border rounded" data-type="{{ item.consent_type }}">
+		<legend class="h5">{{ item.consent_type }}</legend>
+		<p>{{ item.text }}</p>
+		<p class="text-muted small">文面の版：{{ item.version }}／現在の状態：{{ item.status or "未回答" }}</p>
+		{% if item.consent_type == bank_transfer %}
+			<pre class="small">{{ accounts or "振込口座が登録されていません。人事・給与担当に登録を依頼してください。" }}</pre>
+			<label class="d-block">対象の賃金・金額 <input type="text" class="form-control" name="wage_scope" placeholder="例：月例給与と賞与の全額"></label>
+			<label class="d-block">開始希望時期 <input type="text" class="form-control" name="start_period" placeholder="例：2027年4月支給分から"></label>
+		{% endif %}
+		<label class="mr-3"><input type="radio" name="{{ loop.index }}" value="同意"> 同意する</label>
+		<label><input type="radio" name="{{ loop.index }}" value="撤回"> 同意しない（同意済みの場合は撤回する）</label>
+	</fieldset>
+{% endfor %}
+	<button type="submit" class="btn btn-primary">{{ _("選んだ内容を送信") }}</button>
+</form>
+<script>
+document.getElementById("jp-consent-form").addEventListener("submit", (e) => {
+	e.preventDefault();
+	const choices = {};
+	document.querySelectorAll("fieldset[data-type]").forEach((fs) => {
+		const checked = fs.querySelector("input[type=radio]:checked");
+		if (checked) choices[fs.dataset.type] = checked.value;
+	});
+	frappe.call({
+		method: "japan_hr_compliance.jp_hr_core.consent.submit_portal_consents",
+		args: {
+			choices: choices,
+			wage_scope: (document.querySelector("[name=wage_scope]") || {}).value,
+			start_period: (document.querySelector("[name=start_period]") || {}).value,
+		},
+		callback: (r) => { frappe.msgprint(`${(r.message || []).length} 件を記録しました。`); setTimeout(() => location.reload(), 1500); },
+	});
+});
+</script>
+{% endblock %}

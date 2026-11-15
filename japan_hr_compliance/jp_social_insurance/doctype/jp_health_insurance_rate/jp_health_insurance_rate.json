@@ -1,0 +1,205 @@
+{
+ "actions": [],
+ "creation": "2026-11-15 12:00:00.000000",
+ "modified": "2026-11-15 12:00:00.000000",
+ "modified_by": "Administrator",
+ "owner": "Administrator",
+ "doctype": "DocType",
+ "name": "JP Health Insurance Rate",
+ "module": "JP Social Insurance",
+ "engine": "InnoDB",
+ "custom": 0,
+ "istable": 0,
+ "issingle": 0,
+ "is_submittable": 0,
+ "editable_grid": 0,
+ "track_changes": 1,
+ "field_order": [
+  "effective_from",
+  "insurer",
+  "column_break_6",
+  "status",
+  "superseded_by",
+  "section_break_2",
+  "rates",
+  "section_break_3",
+  "source_title",
+  "source_published",
+  "source_url",
+  "column_break_8",
+  "confirmed_by",
+  "confirmed_on",
+  "remarks",
+  "section_break_4",
+  "reconciliations"
+ ],
+ "fields": [
+  {
+   "fieldname": "effective_from",
+   "fieldtype": "Date",
+   "label": "適用開始月",
+   "reqd": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "description": "保険料の対象月の1日。次の版の適用開始月の前月まで有効（5.2）"
+  },
+  {
+   "fieldname": "insurer",
+   "fieldtype": "Select",
+   "label": "保険者区分",
+   "options": "協会けんぽ",
+   "default": "協会けんぽ",
+   "reqd": 1,
+   "description": "第1次は協会けんぽのみ（SIR-02）"
+  },
+  {
+   "fieldname": "column_break_6",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "状態",
+   "options": "下書き\n確認済\n廃止（訂正済）",
+   "default": "下書き",
+   "reqd": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "description": "確認済の版だけが計算に使われる。給与明細で使われた版は値を変更できない（訂正は訂正版を登録）"
+  },
+  {
+   "fieldname": "superseded_by",
+   "fieldtype": "Data",
+   "label": "訂正版",
+   "depends_on": "eval:doc.status=='廃止（訂正済）'",
+   "description": "廃止（訂正済）にする場合、訂正版の名称"
+  },
+  {
+   "fieldname": "section_break_2",
+   "fieldtype": "Section Break",
+   "label": "都道府県別の料率"
+  },
+  {
+   "fieldname": "rates",
+   "fieldtype": "Table",
+   "label": "料率",
+   "options": "JP Health Insurance Rate Detail"
+  },
+  {
+   "fieldname": "section_break_3",
+   "fieldtype": "Section Break",
+   "label": "出典・確認（5.3）",
+   "collapsible": 0
+  },
+  {
+   "fieldname": "source_title",
+   "fieldtype": "Data",
+   "label": "資料名"
+  },
+  {
+   "fieldname": "source_published",
+   "fieldtype": "Date",
+   "label": "公表日"
+  },
+  {
+   "fieldname": "source_url",
+   "fieldtype": "Data",
+   "label": "URL",
+   "options": "URL"
+  },
+  {
+   "fieldname": "column_break_8",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "confirmed_by",
+   "fieldtype": "Link",
+   "label": "確認者",
+   "options": "User"
+  },
+  {
+   "fieldname": "confirmed_on",
+   "fieldtype": "Date",
+   "label": "確認日"
+  },
+  {
+   "fieldname": "remarks",
+   "fieldtype": "Small Text",
+   "label": "備考"
+  },
+  {
+   "fieldname": "section_break_4",
+   "fieldtype": "Section Break",
+   "label": "保険料額表との突合（5.3）",
+   "collapsible": 1
+  },
+  {
+   "fieldname": "reconciliations",
+   "fieldtype": "Table",
+   "label": "突合の結果",
+   "options": "JP SI Reconciliation Result",
+   "read_only": 1
+  }
+ ],
+ "permissions": [
+  {
+   "role": "System Manager",
+   "permlevel": 0,
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "email": 1,
+   "share": 1
+  },
+  {
+   "role": "HR Manager",
+   "permlevel": 0,
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "email": 1,
+   "share": 1
+  },
+  {
+   "role": "JP HR User",
+   "permlevel": 0,
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "email": 1,
+   "share": 1
+  },
+  {
+   "role": "JP Payroll User",
+   "permlevel": 0,
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "email": 1,
+   "share": 1
+  }
+ ],
+ "sort_field": "effective_from",
+ "sort_order": "DESC",
+ "states": [],
+ "links": [],
+ "autoname": "JPHIR-.#####",
+ "naming_rule": "Expression (old style)",
+ "description": "健康保険料率（協会けんぽ・都道府県別）・介護保険料率・子ども・子育て支援金率の版（SIR-01・02・06）"
+}

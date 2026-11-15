@@ -1,0 +1,121 @@
+{
+ "actions": [],
+ "creation": "2026-11-15 12:00:00.000000",
+ "modified": "2026-11-15 12:00:00.000000",
+ "modified_by": "Administrator",
+ "owner": "Administrator",
+ "doctype": "DocType",
+ "name": "JP Job Category",
+ "module": "JP HR Core",
+ "engine": "InnoDB",
+ "custom": 0,
+ "istable": 0,
+ "issingle": 0,
+ "is_submittable": 0,
+ "editable_grid": 0,
+ "track_changes": 1,
+ "field_order": [
+  "job_name",
+  "agreement36_label",
+  "ei_job_class",
+  "disabled",
+  "description"
+ ],
+ "fields": [
+  {
+   "fieldname": "job_name",
+   "fieldtype": "Data",
+   "label": "業務名（名簿用）",
+   "reqd": 1,
+   "unique": 1,
+   "in_list_view": 1,
+   "description": "労働者名簿の「従事する業務の種類」に出力"
+  },
+  {
+   "fieldname": "agreement36_label",
+   "fieldtype": "Data",
+   "label": "36協定の業務の種類",
+   "in_list_view": 1,
+   "description": "「一般事務」「営業」等の具体的な文言。業務名と統一しなくてよい"
+  },
+  {
+   "fieldname": "ei_job_class",
+   "fieldtype": "Select",
+   "label": "雇用保険の職種",
+   "options": "\n01 管理的職業\n02 専門的・技術的職業\n03 事務的職業\n04 販売の職業\n05 サービスの職業\n06 保安の職業\n07 農林漁業の職業\n08 生産工程の職業\n09 輸送・機械運転の職業\n10 建設・採掘の職業\n11 運搬・清掃・包装等の職業",
+   "in_list_view": 1,
+   "description": "資格取得届の職種（11区分）。業務名から自動では決めない"
+  },
+  {
+   "fieldname": "disabled",
+   "fieldtype": "Check",
+   "label": "無効"
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Small Text",
+   "label": "説明"
+  }
+ ],
+ "permissions": [
+  {
+   "role": "System Manager",
+   "permlevel": 0,
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "email": 1,
+   "share": 1
+  },
+  {
+   "role": "HR Manager",
+   "permlevel": 0,
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "email": 1,
+   "share": 1
+  },
+  {
+   "role": "JP HR User",
+   "permlevel": 0,
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "email": 1,
+   "share": 1
+  },
+  {
+   "role": "JP Payroll User",
+   "permlevel": 0,
+   "read": 1,
+   "report": 1,
+   "print": 1
+  },
+  {
+   "role": "JP My Number Officer",
+   "permlevel": 0,
+   "read": 1,
+   "report": 1,
+   "print": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "links": [],
+ "autoname": "field:job_name",
+ "naming_rule": "By fieldname"
+}

@@ -1,0 +1,173 @@
+{
+ "actions": [],
+ "creation": "2026-11-15 18:00:00.000000",
+ "modified": "2026-11-15 18:00:00.000000",
+ "modified_by": "Administrator",
+ "owner": "Administrator",
+ "doctype": "DocType",
+ "name": "JP Procedure Rule",
+ "module": "JP HR Core",
+ "engine": "InnoDB",
+ "custom": 0,
+ "istable": 0,
+ "issingle": 0,
+ "is_submittable": 0,
+ "editable_grid": 0,
+ "track_changes": 1,
+ "field_order": [
+  "rule_code",
+  "procedure_name",
+  "event",
+  "scheme",
+  "condition",
+  "enabled",
+  "column_break_1",
+  "base_date",
+  "due_method",
+  "due_value",
+  "due_text",
+  "legal_basis",
+  "provisional"
+ ],
+ "fields": [
+  {
+   "fieldname": "rule_code",
+   "fieldtype": "Data",
+   "label": "規則コード",
+   "reqd": 1,
+   "unique": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "procedure_name",
+   "fieldtype": "Data",
+   "label": "手続き",
+   "reqd": 1,
+   "in_list_view": 1,
+   "description": "{resident_tax} は退職時の住民税の徴収区分に置き換える"
+  },
+  {
+   "fieldname": "event",
+   "fieldtype": "Select",
+   "label": "契機",
+   "options": "入社\n退職\n扶養異動",
+   "reqd": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "scheme",
+   "fieldtype": "Select",
+   "label": "制度",
+   "options": "健康保険・厚生年金\n雇用保険\n住民税\n所得税\nその他"
+  },
+  {
+   "fieldname": "condition",
+   "fieldtype": "Select",
+   "label": "作成の条件",
+   "options": "なし\n社会保険の被保険者\n雇用保険の被保険者\n離職証明書（交付希望または離職日に59歳以上）\n住民税：一括徴収\n被扶養者の異動\n税の扶養の異動",
+   "default": "なし"
+  },
+  {
+   "fieldname": "enabled",
+   "fieldtype": "Check",
+   "label": "有効",
+   "default": "1"
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "base_date",
+   "fieldtype": "Select",
+   "label": "基準日",
+   "options": "入社日\n退職日\n資格取得日（健保・厚年）\n資格取得日（雇保）\n資格喪失日（健保・厚年）\n被保険者でなくなった日（雇保）\n異動日",
+   "reqd": 1
+  },
+  {
+   "fieldname": "due_method",
+   "fieldtype": "Select",
+   "label": "期限の数え方",
+   "options": "基準日を含めてN日以内\n基準日の翌日から起算してN日以内\n基準日の属する月の翌月D日まで\n基準日からNか月以内\n期限なし",
+   "reqd": 1
+  },
+  {
+   "fieldname": "due_value",
+   "fieldtype": "Int",
+   "label": "日数・月数・日（N／D）"
+  },
+  {
+   "fieldname": "due_text",
+   "fieldtype": "Data",
+   "label": "期限の表示",
+   "description": "画面に出す実務の言葉。例：退職日の翌日（資格喪失日）から5日以内"
+  },
+  {
+   "fieldname": "legal_basis",
+   "fieldtype": "Data",
+   "label": "根拠"
+  },
+  {
+   "fieldname": "provisional",
+   "fieldtype": "Check",
+   "label": "仮の設定（確認待ち）",
+   "description": "根拠・期限が確認待ちの規則。タスクにも表示する"
+  }
+ ],
+ "permissions": [
+  {
+   "role": "System Manager",
+   "permlevel": 0,
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "email": 1,
+   "share": 1
+  },
+  {
+   "role": "HR Manager",
+   "permlevel": 0,
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "email": 1,
+   "share": 1
+  },
+  {
+   "role": "JP HR User",
+   "permlevel": 0,
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "email": 1,
+   "share": 1
+  },
+  {
+   "role": "JP Payroll User",
+   "permlevel": 0,
+   "read": 1,
+   "report": 1,
+   "print": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "links": [],
+ "autoname": "field:rule_code",
+ "naming_rule": "By fieldname",
+ "description": "入退社・扶養異動の手続きの期限規則（EMP-80）。制度ごとに基準日と数え方を持つ（社保と雇保で共通化しない）"
+}

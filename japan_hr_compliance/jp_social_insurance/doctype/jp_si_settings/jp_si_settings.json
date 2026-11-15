@@ -1,0 +1,196 @@
+{
+ "actions": [],
+ "creation": "2026-11-15 12:00:00.000000",
+ "modified": "2026-11-15 12:00:00.000000",
+ "modified_by": "Administrator",
+ "owner": "Administrator",
+ "doctype": "DocType",
+ "name": "JP SI Settings",
+ "module": "JP Social Insurance",
+ "engine": "InnoDB",
+ "custom": 0,
+ "istable": 0,
+ "issingle": 0,
+ "is_submittable": 0,
+ "editable_grid": 0,
+ "track_changes": 1,
+ "field_order": [
+  "company",
+  "section_break_14",
+  "deduction_timing",
+  "final_pay_two_months",
+  "column_break_20",
+  "care_display",
+  "support_display",
+  "section_break_15",
+  "ei_rate_basis",
+  "section_break_16",
+  "absence_deduction_monthly",
+  "prescribed_days_basis",
+  "section_break_17",
+  "specific_applicable_office",
+  "specific_applicable_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "company",
+   "fieldtype": "Link",
+   "label": "会社",
+   "options": "Company",
+   "reqd": 1,
+   "unique": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "section_break_14",
+   "fieldtype": "Section Break",
+   "label": "控除"
+  },
+  {
+   "fieldname": "deduction_timing",
+   "fieldtype": "Select",
+   "label": "控除月",
+   "options": "翌月控除\n当月控除",
+   "default": "翌月控除",
+   "reqd": 1,
+   "description": "料率・等級は保険料の対象月で引く（SIR-24）"
+  },
+  {
+   "fieldname": "final_pay_two_months",
+   "fieldtype": "Check",
+   "label": "月末退職者の最終給与で2か月分を控除する（既定）",
+   "default": "1",
+   "description": "翌月控除の場合。給与明細ごとに取り消せる（SIR-26）"
+  },
+  {
+   "fieldname": "column_break_20",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "care_display",
+   "fieldtype": "Select",
+   "label": "健保・介護の明細表示",
+   "options": "合算\n別行",
+   "default": "合算",
+   "description": "合算＝「健康保険料（介護含む）」1行（SIR-21）"
+  },
+  {
+   "fieldname": "support_display",
+   "fieldtype": "Select",
+   "label": "支援金の明細表示",
+   "options": "別行\n合算",
+   "default": "別行",
+   "description": "端数処理は表示によらず健保と別（SIR-22）"
+  },
+  {
+   "fieldname": "section_break_15",
+   "fieldtype": "Section Break",
+   "label": "雇用保険"
+  },
+  {
+   "fieldname": "ei_rate_basis",
+   "fieldtype": "Select",
+   "label": "雇用保険料率の切替基準",
+   "options": "賃金締切日\n支給日",
+   "default": "賃金締切日",
+   "description": "支給の時期が混在する会社は支給日（SIR-60）。賞与は常に支給日"
+  },
+  {
+   "fieldname": "section_break_16",
+   "fieldtype": "Section Break",
+   "label": "支払基礎日数（SIR-41）"
+  },
+  {
+   "fieldname": "absence_deduction_monthly",
+   "fieldtype": "Check",
+   "label": "月給制で欠勤控除を行う",
+   "description": "行う場合、月給制の支払基礎日数は所定労働日数−欠勤日数"
+  },
+  {
+   "fieldname": "prescribed_days_basis",
+   "fieldtype": "Select",
+   "label": "所定労働日数の取り方",
+   "options": "給与明細の勤務日数\n契約の月所定労働日数",
+   "default": "給与明細の勤務日数",
+   "description": "就業規則で定めた方式に合わせる（B-4 の3方式は B-4 で追加）"
+  },
+  {
+   "fieldname": "section_break_17",
+   "fieldtype": "Section Break",
+   "label": "短時間労働者の適用（SIR-71）"
+  },
+  {
+   "fieldname": "specific_applicable_office",
+   "fieldtype": "Check",
+   "label": "特定適用事業所に該当（届出済み）",
+   "description": "自動では判定しない。届出後に担当者が登録する"
+  },
+  {
+   "fieldname": "specific_applicable_from",
+   "fieldtype": "Date",
+   "label": "特定適用事業所の該当日",
+   "depends_on": "specific_applicable_office"
+  }
+ ],
+ "permissions": [
+  {
+   "role": "System Manager",
+   "permlevel": 0,
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "email": 1,
+   "share": 1
+  },
+  {
+   "role": "HR Manager",
+   "permlevel": 0,
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "email": 1,
+   "share": 1
+  },
+  {
+   "role": "JP HR User",
+   "permlevel": 0,
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "email": 1,
+   "share": 1
+  },
+  {
+   "role": "JP Payroll User",
+   "permlevel": 0,
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "email": 1,
+   "share": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "links": [],
+ "autoname": "field:company",
+ "naming_rule": "By fieldname",
+ "description": "会社別の社会保険・雇用保険の設定（SIR-10・21〜26・60）"
+}

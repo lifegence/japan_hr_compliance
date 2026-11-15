@@ -1,0 +1,77 @@
+{% extends "templates/web.html" %}
+
+{% block page_content %}
+<h2>{{ _("登録内容の変更申請") }}</h2>
+<p>{{ employee_name }} さん。申請は人事担当の承認後に反映されます。承認までは現在の登録内容のままです。</p>
+
+<form class="jp-cr mb-4 p-3 border rounded" data-type="住所">
+	<h5>住所（転居）</h5>
+	<p class="small text-muted">現在：{{ current_address or "未登録" }}</p>
+	<div class="row">
+		<label class="col-sm-4">転居日 <input type="date" class="form-control" name="valid_from" required></label>
+		<label class="col-sm-4">郵便番号 <input class="form-control" name="postal_code"></label>
+		<label class="col-sm-4">都道府県 <input class="form-control" name="prefecture"></label>
+		<label class="col-sm-4">市区町村 <input class="form-control" name="municipality" required></label>
+		<label class="col-sm-4">市区町村コード（6桁） <input class="form-control" name="lg_code"></label>
+		<label class="col-sm-4">町域・番地 <input class="form-control" name="address_line"></label>
+		<label class="col-sm-8">建物名・部屋番号 <input class="form-control" name="building"></label>
+	</div>
+	<button type="submit" class="btn btn-primary btn-sm">住所の変更を申請</button>
+</form>
+
+<form class="jp-cr mb-4 p-3 border rounded" data-type="振込口座">
+	<h5>振込口座（置き換え）</h5>
+	<pre class="small">{{ accounts or "未登録" }}</pre>
+	{% for i in [1, 2] %}
+	<div class="row mb-2" data-account="{{ i }}">
+		<label class="col-sm-2">順位 <input class="form-control" name="priority" value="{{ i }}"></label>
+		<label class="col-sm-2">金融機関コード <input class="form-control" name="bank_code"></label>
+		<label class="col-sm-2">支店コード <input class="form-control" name="branch_code"></label>
+		<label class="col-sm-2">種目 <select class="form-control" name="account_type"><option>普通</option><option>当座</option><option>貯蓄</option></select></label>
+		<label class="col-sm-2">口座番号 <input class="form-control" name="account_no"></label>
+		<label class="col-sm-2">名義カナ <input class="form-control" name="holder_kana"></label>
+		<label class="col-sm-3">定額（空欄＝残額） <input class="form-control" name="fixed_amount"></label>
+	</div>
+	{% endfor %}
+	<button type="submit" class="btn btn-primary btn-sm">口座の変更を申請</button>
+</form>
+
+<form class="jp-cr mb-4 p-3 border rounded" data-type="扶養親族">
+	<h5>扶養親族</h5>
+	<div class="row">
+		<label class="col-sm-3">申請 <select class="form-control" name="action"><option>追加</option><option>変更</option><option>削除</option></select></label>
+		<label class="col-sm-3">対象（変更・削除） <select class="form-control" name="row"><option value=""></option>
+			{% for d in dependents %}<option value="{{ d.name }}">{{ d.dependent_name }}（{{ d.relation or "" }}）</option>{% endfor %}</select></label>
+		<label class="col-sm-3">異動日 <input type="date" class="form-control" name="change_date" required></label>
+		<label class="col-sm-3">氏名 <input class="form-control" name="dependent_name"></label>
+		<label class="col-sm-3">氏名カナ <input class="form-control" name="dependent_kana"></label>
+		<label class="col-sm-3">続柄 <input class="form-control" name="relation"></label>
+		<label class="col-sm-3">生年月日 <input type="date" class="form-control" name="birth_date"></label>
+	</div>
+	<button type="submit" class="btn btn-primary btn-sm">扶養親族の変更を申請</button>
+</form>
+
+<h5>申請の状況</h5>
+<ul>
+{% for r in requests %}<li>{{ r.request_type }}：{{ r.status }}（{{ frappe.utils.format_datetime(r.requested_on) }}）{% if r.reject_reason %} 却下の理由：{{ r.reject_reason }}{% endif %}</li>{% else %}<li>なし</li>{% endfor %}
+</ul>
+<script>
+document.querySelectorAll("form.jp-cr").forEach((form) => form.addEventListener("submit", (e) => {
+	e.preventDefault();
+	const type = form.dataset.type;
+	const val = (el, n) => (el.querySelector(`[name=${n}]`) || {}).value || "";
+	let data = {};
+	if (type === "住所") {
+		["valid_from", "postal_code", "prefecture", "municipality", "lg_code", "address_line", "building"].forEach((n) => data[n] = val(form, n));
+	} else if (type === "振込口座") {
+		data.accounts = [...form.querySelectorAll("[data-account]")].filter((row) => val(row, "account_no"))
+			.map((row) => Object.fromEntries(["priority", "bank_code", "branch_code", "account_type", "account_no", "holder_kana", "fixed_amount"].map((n) => [n, val(row, n)])));
+	} else {
+		data = { action: val(form, "action"), row: val(form, "row"), change_date: val(form, "change_date"),
+			values: Object.fromEntries(["dependent_name", "dependent_kana", "relation", "birth_date"].map((n) => [n, val(form, n)])) };
+	}
+	frappe.call({ method: "japan_hr_compliance.jp_hr_core.change_request.submit_change_request", args: { request_type: type, data: JSON.stringify(data) },
+		callback: () => { frappe.msgprint("申請しました。承認後に反映されます。"); setTimeout(() => location.reload(), 1500); } });
+}));
+</script>
+{% endblock %}

@@ -1,0 +1,120 @@
+{
+ "actions": [],
+ "creation": "2026-11-15 12:00:00.000000",
+ "modified": "2026-11-15 12:00:00.000000",
+ "modified_by": "Administrator",
+ "owner": "Administrator",
+ "doctype": "DocType",
+ "name": "JP Workplace Insurance Unit",
+ "module": "JP HR Core",
+ "engine": "InnoDB",
+ "custom": 0,
+ "istable": 1,
+ "issingle": 0,
+ "is_submittable": 0,
+ "editable_grid": 1,
+ "track_changes": 0,
+ "field_order": [
+  "scheme",
+  "labour_scope",
+  "parent_workplace",
+  "approval_type",
+  "column_break_1",
+  "office_symbol",
+  "office_no",
+  "labour_ins_no",
+  "ei_business_class",
+  "valid_from",
+  "valid_to"
+ ],
+ "fields": [
+  {
+   "fieldname": "scheme",
+   "fieldtype": "Select",
+   "label": "制度",
+   "options": "\n健康保険・厚生年金\n雇用保険\n労働保険",
+   "reqd": 1,
+   "in_list_view": 1,
+   "columns": 2
+  },
+  {
+   "fieldname": "labour_scope",
+   "fieldtype": "Select",
+   "label": "労働保険の適用",
+   "options": "\n一元適用\n二元適用（労災保険）\n二元適用（雇用保険）",
+   "depends_on": "eval:doc.scheme=='労働保険'",
+   "mandatory_depends_on": "eval:doc.scheme=='労働保険'",
+   "in_list_view": 1,
+   "columns": 2
+  },
+  {
+   "fieldname": "parent_workplace",
+   "fieldtype": "Link",
+   "label": "適用先の事業場",
+   "options": "JP Workplace",
+   "in_list_view": 1,
+   "columns": 2,
+   "description": "一括適用等で他の事業場に適用される場合に指定。空欄はこの事業場"
+  },
+  {
+   "fieldname": "approval_type",
+   "fieldtype": "Select",
+   "label": "承認・認可",
+   "options": "なし\n一括適用承認\n事業所非該当承認\n継続事業一括認可",
+   "default": "なし"
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "office_symbol",
+   "fieldtype": "Data",
+   "label": "事業所整理記号",
+   "depends_on": "eval:doc.scheme=='健康保険・厚生年金'"
+  },
+  {
+   "fieldname": "office_no",
+   "fieldtype": "Data",
+   "label": "事業所番号",
+   "depends_on": "eval:in_list(['健康保険・厚生年金','雇用保険'], doc.scheme)",
+   "description": "健保・厚年は事業所番号、雇用保険は適用事業所番号（11桁）"
+  },
+  {
+   "fieldname": "labour_ins_no",
+   "fieldtype": "Data",
+   "label": "労働保険番号",
+   "depends_on": "eval:doc.scheme=='労働保険'",
+   "description": "14桁",
+   "in_list_view": 1,
+   "columns": 2
+  },
+  {
+   "fieldname": "ei_business_class",
+   "fieldtype": "Select",
+   "label": "雇用保険の事業区分",
+   "options": "\n一般の事業\n農林水産・清酒製造の事業\n建設の事業",
+   "depends_on": "eval:doc.scheme=='雇用保険'"
+  },
+  {
+   "fieldname": "valid_from",
+   "fieldtype": "Date",
+   "label": "適用開始日",
+   "reqd": 1,
+   "in_list_view": 1,
+   "columns": 1
+  },
+  {
+   "fieldname": "valid_to",
+   "fieldtype": "Date",
+   "label": "適用終了日",
+   "in_list_view": 1,
+   "columns": 1
+  }
+ ],
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "links": []
+}

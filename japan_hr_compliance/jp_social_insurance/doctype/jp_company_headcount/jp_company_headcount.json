@@ -1,0 +1,130 @@
+{
+ "actions": [],
+ "creation": "2026-11-15 12:00:00.000000",
+ "modified": "2026-11-15 12:00:00.000000",
+ "modified_by": "Administrator",
+ "owner": "Administrator",
+ "doctype": "DocType",
+ "name": "JP Company Headcount",
+ "module": "JP Social Insurance",
+ "engine": "InnoDB",
+ "custom": 0,
+ "istable": 0,
+ "issingle": 0,
+ "is_submittable": 0,
+ "editable_grid": 0,
+ "track_changes": 1,
+ "field_order": [
+  "company",
+  "month",
+  "pension_insured_count",
+  "column_break_28",
+  "threshold",
+  "at_or_above",
+  "warning",
+  "manually_adjusted"
+ ],
+ "fields": [
+  {
+   "fieldname": "company",
+   "fieldtype": "Link",
+   "label": "会社",
+   "options": "Company",
+   "reqd": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "month",
+   "fieldtype": "Date",
+   "label": "年月",
+   "reqd": 1,
+   "in_list_view": 1,
+   "description": "月の1日"
+  },
+  {
+   "fieldname": "pension_insured_count",
+   "fieldtype": "Int",
+   "label": "厚年被保険者数（短時間労働者を除く）",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "column_break_28",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "threshold",
+   "fieldtype": "Int",
+   "label": "企業規模要件の人数",
+   "read_only": 1
+  },
+  {
+   "fieldname": "at_or_above",
+   "fieldtype": "Check",
+   "label": "基準以上",
+   "read_only": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "warning",
+   "fieldtype": "Check",
+   "label": "警告（基準以上の月が続く）",
+   "read_only": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "manually_adjusted",
+   "fieldtype": "Check",
+   "label": "人数を手修正した",
+   "description": "共済組合員など自動で数えられない人数を加えた場合"
+  }
+ ],
+ "permissions": [
+  {
+   "role": "System Manager",
+   "permlevel": 0,
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "email": 1,
+   "share": 1
+  },
+  {
+   "role": "HR Manager",
+   "permlevel": 0,
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "email": 1,
+   "share": 1
+  },
+  {
+   "role": "JP HR User",
+   "permlevel": 0,
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "email": 1,
+   "share": 1
+  }
+ ],
+ "sort_field": "month",
+ "sort_order": "DESC",
+ "states": [],
+ "links": [],
+ "title_field": "company",
+ "show_title_field_in_link": 0,
+ "description": "会社の厚年被保険者数の月ごとの記録（SIR-71）"
+}
