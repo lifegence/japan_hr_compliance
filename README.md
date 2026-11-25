@@ -39,6 +39,11 @@ Frappe HR（hrms）v16 向けの日本の人事労務ローカライズアプリ
 - 口座振込の同意・電子交付の承諾の記録、従業員ポータルからの変更申請（住所・振込口座・扶養）
 - 入退社・扶養異動の手続きタスク（社会保険・雇用保険・源泉徴収票・住民税）。期限は制度ごとの規則マスタで変更できます
 - 日本向けの既定ロールと権限
+- 兼務（JP Concurrent Post）：主務とは別に兼ねる部署・役職・兼務先での上長と期間。
+  その日の兼務は `japan_hr_compliance.jp_hr_core.doctype.jp_concurrent_post.jp_concurrent_post.active_posts(employee, date)` で取得
+- 発令（JP Personnel Order）：異動・昇格／降格・上長変更・兼務・兼務解除を発令日付きで登録し、発令日に従業員マスタへ反映
+  （未来の日付は予約して毎日反映。異動・昇格は社内職歴を発令日で区切る）。
+  hrms の Employee Transfer／Promotion は発令日より前に提出できないため、予約できる発令として用意しています
 
 ### JP Leave（年次有給休暇）
 

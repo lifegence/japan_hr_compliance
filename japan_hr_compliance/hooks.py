@@ -107,3 +107,9 @@ jinja = {"methods": [
 # jp_contract_retro_impact：fn(employee, start, end) -> list[str]。契約の遡及変更の影響（EMP-27）
 jp_on_dependent_change = []
 jp_contract_retro_impact = []
+
+# --- 兼務・発令日（JP Concurrent Post／JP Personnel Order）。既存の行は変えず、ここから追記する ---
+scheduler_events.setdefault("daily", []).extend([
+    "japan_hr_compliance.jp_hr_core.doctype.jp_personnel_order.jp_personnel_order.apply_due_orders",
+    "japan_hr_compliance.jp_hr_core.doctype.jp_concurrent_post.jp_concurrent_post.refresh_statuses",
+])

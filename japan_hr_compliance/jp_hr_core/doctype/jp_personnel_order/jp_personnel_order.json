@@ -1,0 +1,270 @@
+{
+ "actions": [],
+ "creation": "2026-11-25 20:00:00.000000",
+ "modified": "2026-11-25 20:00:00.000000",
+ "modified_by": "Administrator",
+ "owner": "Administrator",
+ "doctype": "DocType",
+ "name": "JP Personnel Order",
+ "module": "JP HR Core",
+ "engine": "InnoDB",
+ "custom": 0,
+ "track_changes": 1,
+ "field_order": [
+  "naming_series",
+  "employee",
+  "employee_name",
+  "company",
+  "column_break_1",
+  "order_type",
+  "effective_date",
+  "status",
+  "applied_on",
+  "section_current",
+  "current_department",
+  "current_designation",
+  "column_break_c",
+  "current_reports_to",
+  "current_branch",
+  "section_new",
+  "new_department",
+  "new_designation",
+  "column_break_n",
+  "new_reports_to",
+  "new_branch",
+  "concurrent_post",
+  "created_post",
+  "section_reason",
+  "reason",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "番号",
+   "options": "JP-PO-.YYYY.-",
+   "default": "JP-PO-.YYYY.-",
+   "hidden": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "employee",
+   "fieldtype": "Link",
+   "label": "従業員",
+   "options": "Employee",
+   "reqd": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "employee_name",
+   "fieldtype": "Data",
+   "label": "氏名",
+   "fetch_from": "employee.employee_name",
+   "read_only": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "company",
+   "fieldtype": "Link",
+   "label": "会社",
+   "options": "Company",
+   "fetch_from": "employee.company",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "order_type",
+   "fieldtype": "Select",
+   "label": "発令の種類",
+   "options": "異動\n昇格・降格\n上長変更\n兼務\n兼務解除",
+   "reqd": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "effective_date",
+   "fieldtype": "Date",
+   "label": "発令日",
+   "reqd": 1,
+   "in_list_view": 1,
+   "description": "この日に従業員マスタへ反映する。今日以前なら提出したときに反映する"
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "状態",
+   "options": "Draft\nScheduled\nApplied\nCancelled",
+   "default": "Draft",
+   "read_only": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "allow_on_submit": 1
+  },
+  {
+   "fieldname": "applied_on",
+   "fieldtype": "Datetime",
+   "label": "反映日時",
+   "read_only": 1,
+   "allow_on_submit": 1
+  },
+  {
+   "fieldname": "section_current",
+   "fieldtype": "Section Break",
+   "label": "現在（作成時点）",
+   "collapsible": 1
+  },
+  {
+   "fieldname": "current_department",
+   "fieldtype": "Link",
+   "label": "現在の部署",
+   "options": "Department",
+   "read_only": 1
+  },
+  {
+   "fieldname": "current_designation",
+   "fieldtype": "Link",
+   "label": "現在の役職",
+   "options": "Designation",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_c",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "current_reports_to",
+   "fieldtype": "Link",
+   "label": "現在の上長",
+   "options": "Employee",
+   "read_only": 1
+  },
+  {
+   "fieldname": "current_branch",
+   "fieldtype": "Link",
+   "label": "現在の支店",
+   "options": "Branch",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_new",
+   "fieldtype": "Section Break",
+   "label": "発令の内容"
+  },
+  {
+   "fieldname": "new_department",
+   "fieldtype": "Link",
+   "label": "新しい部署（兼務先）",
+   "options": "Department",
+   "depends_on": "eval:in_list(['異動','兼務'], doc.order_type)",
+   "ignore_user_permissions": 1
+  },
+  {
+   "fieldname": "new_designation",
+   "fieldtype": "Link",
+   "label": "新しい役職",
+   "options": "Designation",
+   "depends_on": "eval:in_list(['異動','昇格・降格','兼務'], doc.order_type)"
+  },
+  {
+   "fieldname": "column_break_n",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "new_reports_to",
+   "fieldtype": "Link",
+   "label": "新しい上長（兼務先での上長）",
+   "options": "Employee",
+   "depends_on": "eval:in_list(['異動','上長変更','兼務'], doc.order_type)",
+   "ignore_user_permissions": 1
+  },
+  {
+   "fieldname": "new_branch",
+   "fieldtype": "Link",
+   "label": "新しい支店",
+   "options": "Branch",
+   "depends_on": "eval:doc.order_type=='異動'"
+  },
+  {
+   "fieldname": "concurrent_post",
+   "fieldtype": "Link",
+   "label": "解除する兼務",
+   "options": "JP Concurrent Post",
+   "depends_on": "eval:doc.order_type=='兼務解除'"
+  },
+  {
+   "fieldname": "created_post",
+   "fieldtype": "Link",
+   "label": "作成した兼務",
+   "options": "JP Concurrent Post",
+   "read_only": 1,
+   "depends_on": "eval:doc.order_type=='兼務'",
+   "allow_on_submit": 1
+  },
+  {
+   "fieldname": "section_reason",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "reason",
+   "fieldtype": "Small Text",
+   "label": "発令の理由・備考"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "options": "JP Personnel Order",
+   "read_only": 1,
+   "no_copy": 1,
+   "print_hide": 1
+  }
+ ],
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": [],
+ "row_format": "Dynamic",
+ "is_submittable": 1,
+ "autoname": "naming_series:",
+ "title_field": "employee_name",
+ "description": "発令：異動・昇格・上長変更・兼務・兼務解除を発令日付きで登録し、発令日に従業員マスタへ反映する。hrms の Employee Transfer／Promotion は発令日より前に提出できないため、予約しておける発令として用意する。",
+ "permissions": [
+  {
+   "role": "System Manager",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "submit": 1,
+   "cancel": 1,
+   "amend": 1,
+   "report": 1,
+   "print": 1
+  },
+  {
+   "role": "HR Manager",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "submit": 1,
+   "cancel": 1,
+   "amend": 1,
+   "report": 1,
+   "print": 1
+  },
+  {
+   "role": "HR User",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "submit": 1,
+   "report": 1,
+   "print": 1
+  }
+ ]
+}
